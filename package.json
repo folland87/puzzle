@@ -1,7 +1,12 @@
 {
-  "name": "folland87/puzzle",
+  "name": "@folland87/puzzle",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "author": "Frédéric Olland <frederic@olland.me)>",
+  "repository": "git://github.com/folland87/puzzle.git",
+  "publishConfig": {
+    "registry":"https://npm.pkg.github.com"
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
