@@ -1,1 +1,6 @@
-export const add = (number1, number2) => number1 + number2;
+import React from 'react'
+import styles from './styles.module.css'
+
+export const ExampleComponent = ({ text }) => {
+  return <div className={styles.test}>Example Component: {text}</div>
+}
