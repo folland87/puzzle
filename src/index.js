@@ -5,6 +5,7 @@ import Spinner from './components/Spinner';
 import Pagination from './components/Pagination';
 import Flexbox from './components/Flexbox';
 import { ThemeContextProvider } from './hooks/useTheme';
+
 export {
   Avatar,
   Button,
@@ -12,5 +13,5 @@ export {
   Flexbox,
   Pagination,
   Spinner,
-  ThemeContextProvider
+  ThemeContextProvider,
 };
