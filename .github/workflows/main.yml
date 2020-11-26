@@ -22,7 +22,9 @@ jobs:
         with:
           node-version: 12
           registry-url: 'https://registry.npmjs.org/'
+          scope: '@folland'
       - run: printenv
+      - run: cat /home/runner/work/_temp/.npmrc
       - run: npm install
       - run: npm publish --access public
         env:
