@@ -15,10 +15,11 @@ jobs:
       with:
         node-version: 12
         registry-url: 'https://registry.npmjs.org/'
-        scope: folland87
+    - run: printenv
+    - run: cat /home/runner/work/_temp/.npmrc
     - run: npm install
     # Publish to npm
-    - run: npm publish --access public --@folland:registry=https://registry.npmjs.org/
+    - run: npm publish --access public
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     # Setup .npmrc file to publish to GitHub Packages
