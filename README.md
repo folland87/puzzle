@@ -15,8 +15,7 @@ npm install --save @doad/puzzle
 ```jsx
 import React, { Component } from 'react'
 
-import MyComponent from '@doad/puzzle'
-import '@doad/puzzle/dist/index.css'
+import { Button } from '@doad/puzzle'
 
 class Example extends Component {
   render() {
