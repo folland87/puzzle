@@ -1,10 +1,13 @@
 {
   "name": "@folland87/puzzle",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "description": "Puzzle, yet another design system",
   "author": "folland87",
   "license": "MIT",
-  "repository": "folland87/puzzle",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/folland87/puzzle.git"
+  },
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.js",
