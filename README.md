@@ -7,7 +7,7 @@
 ## Install
 
 ```bash
-npm install --save @doad/puzzle
+npm install @folland87/puzzle
 ```
 
 ## Usage
@@ -15,11 +15,11 @@ npm install --save @doad/puzzle
 ```jsx
 import React, { Component } from 'react'
 
-import { Button } from '@doad/puzzle'
+import { Button } from '@folland87/puzzle'
 
 class Example extends Component {
   render() {
-    return <MyComponent />
+    return <Button>Click me</Button>
   }
 }
 ```
