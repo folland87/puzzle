@@ -4,30 +4,42 @@ on:
   push:
     branches:
       - main
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    # Setup .npmrc file to publish to GitHub Packages
-    - uses: actions/setup-node@v1
-      with:
-        registry-url: 'https://npm.pkg.github.com/'
-        scope: '@folland87'
-    # Publish to GitHub Packages
-    - run: npm install
-    - run: npm publish
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    # Setup .npmrc file to publish to npm
-    - uses: actions/setup-node@v1
-      with:
-        node-version: 12
-        registry-url: 'https://registry.npmjs.org/'
-    - run: echo ${NODE_AUTH_TOKEN}
-    - run: cat /home/runner/work/_temp/.npmrc
-    # Publish to npm
-    - run: npm publish --access public
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - run: npm ci
+
+  publish-npm:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+          registry-url: 'https://registry.npmjs.org/'
+      - run: npm config set //registry.npmjs.org/:_authToken ${NODE_AUTH_TOKEN}
+      - run: npm install
+      - run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+
+  publish-gpr:
+    needs: ['build', 'publish-npm']
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+          registry-url: 'https://npm.pkg.github.com/'
+          scope: '@folland87'
+      - run: npm install
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
