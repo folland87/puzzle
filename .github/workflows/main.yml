@@ -14,8 +14,9 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: 12
-        registry-url: 'https://registry.npmjs.org'
-    - run: echo $NODE_AUTH_TOKEN
+        registry-url: 'https://registry.npmjs.org/'
+    - run: echo ${NODE_AUTH_TOKEN}
+    - run: echo ${{ secrets.NPM_TOKEN }}
     - run: cat /home/runner/work/_temp/.npmrc
     - run: npm install
     # Publish to npm
