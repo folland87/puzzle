@@ -26,6 +26,7 @@ jobs:
       - run: printenv
       - run: cat /home/runner/work/_temp/.npmrc
       - run: npm install
+      - run: npm run build
       - run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
@@ -41,6 +42,7 @@ jobs:
           registry-url: 'https://npm.pkg.github.com/'
           scope: '@folland87'
       - run: npm install
+      - run: npm run build
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}

@@ -1,6 +1,6 @@
 {
   "name": "@folland87/puzzle",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "private": false,
   "description": "Puzzle, yet another design system",
   "author": "folland87",
@@ -14,8 +14,6 @@
     "design-system"
   ],
   "dependencies": {
-    "react-scripts": "^4.0.1",
-    "prop-types": "^15.0.0",
     "styled-system": "^5.1.5"
   },
   "scripts": {
@@ -53,10 +51,12 @@
     "prop-types": "^15.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-scripts": "^4.0.1",
     "react-icons": "^4.1.0",
     "react-router-dom": "^5.0.0",
     "react-styleguidist": "11.0.6",
     "react-svg-loader": "^3.0.3",
+    "prop-types": "^15.0.0",
     "rollup": "^2.33.3",
     "rollup-plugin-delete": "^2.0.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
@@ -71,7 +71,6 @@
   },
   "files": [
     "dist",
-    "README.md",
-    "assets"
+    "README.md"
   ]
 }

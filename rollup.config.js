@@ -6,19 +6,19 @@ import del from 'rollup-plugin-delete';
 import pkg from './package.json';
 
 export default {
-    input: pkg.source,
-    output: [
-        { file: pkg.main, format: 'cjs' },
-        { file: pkg.module, format: 'esm' }
-    ],
-    plugins: [
-        external(),
-        babel({
-          exclude: 'node_modules/**'
-        }),
-        commonjs(),
-        nodeResolve(),
-        del({ targets: ['dist/*'] }),
-    ],
-    external: Object.keys(pkg.peerDependencies || {}),
+  input: pkg.source,
+  output: [
+    { file: pkg.main, format: 'cjs' },
+    { file: pkg.module, format: 'esm' },
+  ],
+  plugins: [
+    external(),
+    babel({
+      exclude: 'node_modules/**',
+    }),
+    commonjs(),
+    nodeResolve(),
+    del({ targets: ['dist/*'] }),
+  ],
+  external: Object.keys(pkg.peerDependencies || {}),
 };
