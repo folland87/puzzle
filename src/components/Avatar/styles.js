@@ -2,11 +2,11 @@ import styled from 'styled-components';
 import { margin, size } from 'styled-system';
 import { get } from '../../theme/getters';
 
-const getRadius = ({ size, square }) => {
+const getRadius = ({ size: avatarSize, square }) => {
   if (!square) return get('radius.rounded');
-  if (size > 64) return get('radius.double');
+  if (avatarSize > 64) return get('radius.double');
   return get('radius.regular');
-}
+};
 
 export const AvatarImg = styled.img`
   ${margin};
@@ -20,7 +20,7 @@ export const AvatarFallback = styled.span`
   ${margin};
   ${size};
   font-family: ${get('fonts.primary')};
-  font-size: ${({fontSize}) => get(`fontSizes.${fontSize}`)};
+  font-size: ${({ fontSize }) => get(`fontSizes.${fontSize}`)};
   display: inline-flex;
   align-items: center;
   justify-content: center;

@@ -1,12 +1,16 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
-import Button from '../../components/Button';
-import Text from '../../components/Text';
-import { FlexRow } from '../Flexbox';
 import {
-  FaTimesCircle, FaTimes, FaInfoCircle, FaCheckCircle, FaExclamationCircle
+  FaTimesCircle,
+  FaTimes,
+  FaInfoCircle,
+  FaCheckCircle,
+  FaExclamationCircle,
 } from 'react-icons/fa';
 import usePausableTimer from '../../hooks/usePausableTimer';
+import Button from '../Button';
+import Text from '../Text';
+import { FlexRow } from '../Flexbox';
 import {
   StyledToast,
   StyledProgressBar,
@@ -50,7 +54,7 @@ const Toast = ({
       </StyledColoredBox>
       <StyledToastContent role="alert">
         <FlexRow alignItems="center">
-          <Text  m={0} fontWeight="medium">
+          <Text m={0} fontWeight="medium">
             {content}
           </Text>
           <Button

@@ -14,57 +14,60 @@ import {
   StyledIconRightContainer,
   StyledMessage,
   StyledLabel,
-} from './styles'
+} from './styles';
 
 let lastId = 0;
 const uniqueId = () => {
-  lastId++;
+  lastId += 1;
   return `input_${lastId}`;
-}
+};
+
+const getMessageIcon = (messageType) => {
+  switch (messageType) {
+    case 'danger': return <FaTimes />;
+    case 'info': return <FaInfoCircle />;
+    case 'success': return <FaCheck />;
+    case 'warning': return <FaExclamationTriangle />;
+    default: return null;
+  }
+};
 
 const InputText = React.forwardRef((props, ref) => {
-  const { iconLeft,
+  const {
+    iconLeft,
     iconRight,
     label,
     message,
     messageType,
-    error,
     radius,
     ...rest
   } = props;
   const id = (rest.id) ? rest.id : uniqueId();
   const descriptionId = (message) && `desc_${id}`;
-  let messageIcon = (messageType) => {
-    switch (messageType) {
-      case 'danger': return <FaTimes/>;
-      case 'info': return <FaInfoCircle/>;
-      case 'success': return <FaCheck/>;
-      case 'warning': return <FaExclamationTriangle/>;
-      default: return null
-    }
-  }
   return (
-    <StyledInputWrapper { ...rest }>
-      { (label) && <StyledLabel as='label' isRequired={props.required} pl={1} id={id}>{label}</StyledLabel> }
+    <StyledInputWrapper {...rest}>
+      { (label) && <StyledLabel as="label" isRequired={props.required} pl={1} id={id}>{label}</StyledLabel> }
       <StyledInputContainer error={messageType === 'danger'} radius={radius}>
         { iconLeft && (
-          <StyledIconLeftContainer aria-hidden="true" position='left'>
+          <StyledIconLeftContainer aria-hidden="true" position="left">
             {iconLeft}
           </StyledIconLeftContainer>
         )}
         <StyledInput aria-labelledby={id} ref={ref} aria-describedby={descriptionId} {...rest} />
         { iconRight && (
-          <StyledIconRightContainer aria-hidden="true" position='right'>
-            {iconRight}</StyledIconRightContainer>
+          <StyledIconRightContainer aria-hidden="true" position="right">
+            {iconRight}
+          </StyledIconRightContainer>
         )}
       </StyledInputContainer>
       { (message) && (
         <StyledMessage id={descriptionId} messageType={messageType}>
-          {messageIcon(messageType)}{message}
+          {getMessageIcon(messageType)}
+          {message}
         </StyledMessage>
       )}
     </StyledInputWrapper>
-  )
+  );
 });
 
 InputText.propTypes = {
@@ -120,7 +123,7 @@ InputText.propTypes = {
   * Styled system margins. Please use shortcuts m, mx, my, mt, ...
   */
   m: PropTypes.number,
-}
+};
 
 InputText.defaultProps = {
   scale: 'medium',
@@ -133,6 +136,6 @@ InputText.defaultProps = {
   messageType: 'text',
   iconLeft: null,
   iconRight: null,
-}
+};
 
 export default InputText;

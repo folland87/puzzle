@@ -1,12 +1,11 @@
 import React, { useRef } from 'react';
 import ReactDOM from 'react-dom';
 import { FaTimes } from 'react-icons/fa';
-import Button from '../../components/Button';
-import Text from '../../components/Text';
-import FlexBox, { FlexRow } from '../Flexbox';
+import Button from '../Button';
+import Text from '../Text';
+import { FlexBox, FlexRow } from '../Flexbox';
 import useFocusTrap from '../../hooks/useFocusTrap';
 import { StyledOverlay, StyledModal } from './styles';
-
 
 const Modal = ({ children, title, hide }) => {
   // Focus trap from https://medium.com/@seif_ghezala/how-to-create-an-accessible-react-modal-5b87e6a27503
@@ -27,7 +26,7 @@ const Modal = ({ children, title, hide }) => {
     if (e.keyCode === 9) {
       handleTabulation(e);
     }
-  }
+  };
 
   return (
     ReactDOM.createPortal(
@@ -53,6 +52,6 @@ const Modal = ({ children, title, hide }) => {
       </StyledOverlay>, document.body,
     )
   );
-}
+};
 
 export default Modal;

@@ -3,11 +3,15 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { space } from 'styled-system';
 import Link from '../Link';
-import { getColor, getSpace, getFontWeight, filterProps } from '../../theme/getters';
-
+import {
+  getColor,
+  getSpace,
+  getFontWeight,
+  filterProps,
+} from '../../theme/getters';
 
 const Tab = styled(Link)`
-  border-bottom: ${(props) => (props.isActive) ? `4px solid` : null};
+  border-bottom: ${(props) => ((props.isActive) ? '4px solid' : null)};
   padding: ${getSpace(1)} ${getSpace(3)};
   margin: 0 ${getSpace(2)};
   font-weight: ${({ isActive }) => isActive && getFontWeight('bold')};
@@ -15,11 +19,11 @@ const Tab = styled(Link)`
   text-decoration: none;
   &:hover {
     text-decoration: none;
-    border-bottom: ${({ isActive }) => !isActive && `2px solid`};
+    border-bottom: ${({ isActive }) => !isActive && '2px solid'};
   }
 `;
 
-const Tabs = styled((props) => (<nav { ...filterProps(props) } />))`
+const Tabs = styled((props) => (<nav {...filterProps(props)} />))`
   ${space}
   list-style: none;
   padding: 0;
@@ -43,10 +47,10 @@ Tabs.propTypes = {
     'primary',
     'secondary',
   ]),
-}
+};
 
 Tabs.defaultProps = {
   color: 'primary',
-}
+};
 
 export default Tabs;

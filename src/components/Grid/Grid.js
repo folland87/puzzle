@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import StyledGrid from './styles';
+import styled from 'styled-components';
 import {
   space,
   layout,
   grid,
   border,
 } from 'styled-system';
-import styled from 'styled-components';
+import StyledGrid from './styles';
 
 const Grid = styled.div`
   display: grid;
@@ -20,8 +20,14 @@ const Grid = styled.div`
 /* @components */
 export default Grid;
 
-
-export const ResponsiveGrid = ({ children, itemMinWidth, gap, rowGap, columnGap, ...rest }) => {
+export const ResponsiveGrid = ({
+  children,
+  itemMinWidth,
+  gap,
+  rowGap,
+  columnGap,
+  ...rest
+}) => {
   const rGap = (gap || gap === 0) ? gap : rowGap;
   const cGap = (gap || gap === 0) ? gap : columnGap;
   return (
@@ -29,14 +35,18 @@ export const ResponsiveGrid = ({ children, itemMinWidth, gap, rowGap, columnGap,
       itemMinWidth={itemMinWidth}
       rowGap={rGap}
       columnGap={cGap}
-      { ...rest }
+      {...rest}
     >
       {children}
     </StyledGrid>
-  )
+  );
 };
 
 ResponsiveGrid.propTypes = {
+  /**
+  * Grid centent
+  */
+  children: PropTypes.node,
   /**
   * The minimum with a grid item can take. Indicates when to wrap elements in a new row;
   * Indicate it as a string with px, em, rem.
@@ -54,11 +64,11 @@ ResponsiveGrid.propTypes = {
   * Grid column gap
   */
   columnGap: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-}
+};
 
 ResponsiveGrid.defaultProps = {
   gap: null,
   rowGap: 3,
   columnGap: 3,
   itemMinWidth: '300px',
-}
+};

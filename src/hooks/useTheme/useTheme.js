@@ -1,18 +1,17 @@
 import React, { createContext, useState, useContext } from 'react';
 import PropTypes from 'prop-types';
-// import GlobalFonts from './fonts';
-import GlobalStyle from './globalStyle';
 import { ThemeProvider } from 'styled-components';
+// import GlobalFonts from './globalFonts';
+import GlobalStyle from './globalStyle';
 import defaultTheme from '../../theme/defaultTheme';
-// import darkTheme from '../../theme/darkTheme';
 export const ThemeContext = createContext();
 
 export const ThemeContextProvider = ({ children, themes }) => {
-  const storedTheme = localStorage.getItem('__doadds_theme__') || 'default';
+  const storedTheme = localStorage.getItem('__puzzle_theme__') || 'default';
   const [theme, setTheme] = useState(themes[storedTheme]);
 
   const switchTheme = (newTheme) => {
-    localStorage.setItem('__doadds_theme__', newTheme);
+    localStorage.setItem('__puzzle_theme__', newTheme);
     setTheme(themes[newTheme]);
   };
 
@@ -20,9 +19,9 @@ export const ThemeContextProvider = ({ children, themes }) => {
   return (
     <ThemeContext.Provider value={{ theme, themes, switchTheme }}>
       <GlobalStyle theme={theme} />
-        <ThemeProvider theme={theme}>
-          {children}
-        </ThemeProvider>
+      <ThemeProvider theme={theme}>
+        {children}
+      </ThemeProvider>
     </ThemeContext.Provider>
   );
 };

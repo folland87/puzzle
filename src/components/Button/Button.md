@@ -45,25 +45,6 @@ import Avatar from '../Avatar';
 ```
 
 ```jsx padded
-<Button outline color="frejus">
-  Cancel
-</Button>
-<Button>
-Go ahead !
-</Button>
-```
-
-```jsx padded
-<Button color="success">
-  Click Me
-</Button>
-<Button outline color="success">
-Click Me
-</Button>
-
-```
-
-```jsx padded
 import { FaEllipsisV, FaBars, FaCoffee } from 'react-icons/fa';
 
 <>

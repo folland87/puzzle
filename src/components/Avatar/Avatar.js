@@ -6,17 +6,25 @@ import { AvatarImg, AvatarFallback } from './styles';
  */
 const Avatar = ({ src, name, ...rest }) => {
   const [error, setError] = useState(false);
-  rest.fontSize = rest.size >= 128 ? 'hero' : rest.size >= 64 ? 'huge' : rest.size >= 32 ? 'large' : 'medium';
-  console.log(error);
+  let fontSize;
+  if (rest.size >= 128) {
+    fontSize = 'hero';
+  } else if (rest.size >= 64) {
+    fontSize = 'huge';
+  } else if (rest.size >= 32) {
+    fontSize = 'large';
+  } else {
+    fontSize = 'medium';
+  }
   return (
-    (error | !src)
+    (error || !src)
       ? (
-        <AvatarFallback {...rest}>
+        <AvatarFallback fontSize={fontSize} {...rest}>
           {(name) ? name.slice(0, 2).toUpperCase() : ''}
         </AvatarFallback>
       )
       : (<AvatarImg src={src} onError={() => setError(true)} {...rest} />)
-  )
+  );
 };
 
 Avatar.propTypes = {
@@ -37,10 +45,10 @@ Avatar.propTypes = {
    * to set a squared avatar
    */
   square: PropTypes.bool,
-}
+};
 
 Avatar.defaultProps = {
   size: 32,
-}
-/* @component */
+};
+
 export default Avatar;

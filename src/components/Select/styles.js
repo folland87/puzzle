@@ -1,16 +1,15 @@
 import React from 'react';
-import styled from "styled-components";
+import styled from 'styled-components';
 import {
   getColor,
   get,
-  filterProps
+  filterProps,
 } from '../../theme/getters';
 
-
 export const StyledSelect = styled(React.forwardRef((props, ref) => (<div ref={ref} {...filterProps(props)} />)))`
-  font-size: ${({scale}) => get(`fontSizes.${scale}`)}};
-  height: ${({scale}) => get(`heights.${scale}`)}};
-  border-radius: ${({radius}) => get(`radius.${radius}`, radius)}};
+  font-size: ${({ scale }) => get(`fontSizes.${scale}`)}};
+  height: ${({ scale }) => get(`heights.${scale}`)}};
+  border-radius: ${({ radius }) => get(`radius.${radius}`, radius)}};
   font-family: ${get('fonts.primary')};
   cursor: pointer;
   color: ${getColor('#000')};
@@ -38,7 +37,7 @@ export const StyledSelect = styled(React.forwardRef((props, ref) => (<div ref={r
 
 export const StyledList = styled(React.forwardRef((props, ref) => (<ul ref={ref} {...props} />)))`
   list-style: none;
-  top: ${({scale}) => get(`heights.${scale}`)}};
+  top: ${({ scale }) => get(`heights.${scale}`)}};
   left: 0;
   right: 0;
   padding: 8px 0;
@@ -66,8 +65,8 @@ export const StyledOverlay = styled.div`
 
 export const StyledOption = styled.li`
   font-family: "Marianne", sans-serif;
-  font-size: ${({scale}) => get(`fontSizes.${scale}`)}};
-  height: ${({scale}) => get(`heights.${scale}`)}};
+  font-size: ${({ scale }) => get(`fontSizes.${scale}`)}};
+  height: ${({ scale }) => get(`heights.${scale}`)}};
   display: flex;
   padding: 0 16px;
   align-items:center;

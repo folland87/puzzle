@@ -5,11 +5,11 @@ export const LangContext = createContext();
 
 export const LangContextProvider = ({ children, languages }) => {
   const storedLang = (
-    localStorage.getItem('__doadds_lang__') || navigator.language.split(/[-_]/)[0]);
+    localStorage.getItem('__puzzle_lang__') || navigator.language.split(/[-_]/)[0]);
   const [lang, setLang] = useState(languages[storedLang]);
 
   const switchLanguage = (newLang) => {
-    localStorage.setItem('__doadds_lang__', newLang);
+    localStorage.setItem('__puzzle_lang__', newLang);
     setLang(languages[newLang]);
   };
 

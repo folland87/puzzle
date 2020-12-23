@@ -1,5 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
-import PropTypes from "prop-types";
+import React, { useEffect, useRef, useState } from 'react';
+import PropTypes from 'prop-types';
+import { FaCaretDown, FaCaretUp } from 'react-icons/fa';
 import useSelect from '../../hooks/useSelect';
 import {
   StyledSelect,
@@ -8,17 +9,21 @@ import {
   StyledOption,
   StyledSelectWrapper,
 } from './styles';
-import { FaCaretDown, FaCaretUp } from 'react-icons/fa';
-
 
 const Select = ({ onSelect, options, ...rest }) => {
   const selectRef = useRef(null);
   const optionsRef = useRef(null);
-  const { toggle, isOpen, onKeyDown, onClick, selectedElement } = useSelect(selectRef, optionsRef);
+  const {
+    toggle,
+    isOpen,
+    onKeyDown,
+    onClick,
+    selectedElement,
+  } = useSelect(selectRef, optionsRef);
   const [selectedOption, setSelectedOption] = useState(null);
   useEffect(() => {
     onSelect(selectedElement);
-    setSelectedOption(options.find((option) => option.value === selectedElement))
+    setSelectedOption(options.find((option) => option.value === selectedElement));
   }, [selectedElement, onSelect, setSelectedOption, options]);
   return (
     <StyledSelectWrapper>
@@ -35,21 +40,19 @@ const Select = ({ onSelect, options, ...rest }) => {
       </StyledSelect>
       {
         (isOpen)
-        ? (
-          <>
-            <StyledList ref={optionsRef} tabIndex={!isOpen ? '-1' : undefined} onKeyDown={onKeyDown} onClick={onClick} {...rest}>
-            {options && options.map((option, i) => {
-              return (
-                <StyledOption tabIndex={0} key={option.value} value={option.value} {...rest}>
-                  {option.label || option.value}
-                </StyledOption>
-              );
-            })}
-            </StyledList>
-            <StyledOverlay onClick={(e) => toggle(e)}/>
-          </>
-        )
-        : null
+          ? (
+            <>
+              <StyledList ref={optionsRef} tabIndex={!isOpen ? '-1' : undefined} onKeyDown={onKeyDown} onClick={onClick} {...rest}>
+                {options && options.map((option, i) => (
+                  <StyledOption tabIndex={0} key={option.value} value={option.value} {...rest}>
+                    {option.label || option.value}
+                  </StyledOption>
+                ))}
+              </StyledList>
+              <StyledOverlay onClick={(e) => toggle(e)} />
+            </>
+          )
+          : null
       }
     </StyledSelectWrapper>
   );
@@ -59,6 +62,7 @@ Select.propTypes = {
   options: PropTypes.array.isRequired,
   onSelect: PropTypes.func,
   scale: PropTypes.oneOf(['small', 'large', 'medium']),
+  radius: PropTypes.string,
 };
 Select.defaultProps = {
   onSelect: () => {},

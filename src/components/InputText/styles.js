@@ -3,13 +3,12 @@ import styled from 'styled-components';
 import { margin } from 'styled-system';
 import { get, filterProps } from '../../theme/getters';
 
-
 export const StyledMessage = styled.p`
   font-family: ${get('fonts.primary')};
   line-height: '1.75';
   font-size: ${get('fontSizes.small')};
   margin-top: ${get('space.1')};
-  color: ${({messageType}) => get(`colors.${messageType}.1`)};
+  color: ${({ messageType }) => get(`colors.${messageType}.1`)};
   display: flex;
   align-items: center;
   > svg {
@@ -25,19 +24,19 @@ export const StyledLabel = styled.p`
   line-height: '1.75';
   margin-bottom: ${get('space.1')};
   &::after {
-    content: ${({isRequired}) => (isRequired) && `" *"`};
-    color: ${get('colors.danger.1')};
+    content: ${({ isRequired }) => (isRequired) && '" *"'};
+    color: ${get('colors.warning.1')};
   }
 `;
 
-export const StyledInput = styled(React.forwardRef((props, ref) => <input ref={ref} {...filterProps(props)}/>))`
+export const StyledInput = styled(React.forwardRef((props, ref) => <input ref={ref} {...filterProps(props)} />))`
   flex-grow: 1;
-  font-size: ${({scale}) => get(`fontSizes.${scale}`)}};
-  height: ${({scale}) => get(`heights.${scale}`)}};
+  font-size: ${({ scale }) => get(`fontSizes.${scale}`)}};
+  height: ${({ scale }) => get(`heights.${scale}`)}};
   font-family: ${get('fonts.primary')};
   min-width: 40px;
   cursor: text;
-  color: ${get('colors.text.0')};
+  color: ${get('colors.dark.1')};
   background: transparent;
   border: 0;
   &:focus {
@@ -48,32 +47,35 @@ export const StyledInput = styled(React.forwardRef((props, ref) => <input ref={r
   };
 `;
 
-export const StyledIconLeftContainer = styled((props) => <span {...filterProps(props)}/>)`
-  margin-right: ${get('space.3')};
+export const StyledIconLeftContainer = styled((props) => <span {...filterProps(props)} />)`
+  margin-right: ${get('space.2')};
 `;
-export const StyledIconRightContainer = styled((props) => <span {...filterProps(props)}/>)`
-  margin-left: ${get('space.3')};
+export const StyledIconRightContainer = styled((props) => <span {...filterProps(props)} />)`
+  margin-left: ${get('space.2')};
   align-self: right;
 `;
-export const StyledInputWrapper = styled((props) => <div {...filterProps(props)}/>)`
+export const StyledInputWrapper = styled((props) => <div {...filterProps(props)} />)`
   ${margin};
   width: ${({ width }) => width};
   display: inline-flex;
   flex-direction: column;
 `;
 
-export const StyledInputContainer = styled((props) => <div {...filterProps(props)}/>)`
-  color: ${get('colors.text.0')};
-  background: ${get('colors.background.3')};
+export const StyledInputContainer = styled((props) => <div {...filterProps(props)} />)`
+  color: ${get('colors.dark.1')};
+  background-color: ${get('colors.light.2')};
   display: inline-flex;
   justify-content: start;
   align-items: center;
   padding: 0 ${get('space.3')};
-  border-radius: ${({radius}) => get(`radius.${radius}`, radius)}};
+  border-radius: ${({ radius }) => get(`radius.${radius}`, radius)}};
   &:focus-within {
     outline: 2px solid transparent;
     box-shadow: ${get('shadows.raised')};
-    background-color: ${get('colors.background.4')};
+    background-color: ${get('colors.light.0')};
+    > span > svg {
+      color: ${get('colors.primary.1')};
+    };
   };
   &:disabled {
     opacity: 0.2;

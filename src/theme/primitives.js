@@ -1,4 +1,3 @@
-
 export const colors = {
   focus: '#2a7ffe',
   // Brand
@@ -6,8 +5,8 @@ export const colors = {
   accent: [],
   link: [],
 
-  light: ["#fafbfc", "#f6f8fa", "#e1e4e8", "#d1d5da", "#959da5"],
-  dark: ["#6a737d", "#586069", "#444d56", "#2f363d", "#24292e"],
+  light: ['#ffffff', '#f2f2f2', '#e1e4e8', '#d1d5da', '#959da5'],
+  dark: ['#666666', '#555555', '#333333', '#121212', '#000000'],
 
   // semantic
   danger: ['#cb000e', '#e1000f', '#f08087', '#f8bfc3', '#fce6e7'],
@@ -16,7 +15,7 @@ export const colors = {
   success: ['#19905b', '#169b62', '#8bcdb1', '#c5e6d8', '#e8f5ef'],
 
   // text
-  background: ['#bfbfbf', '#505050', '#f0f0f0','#f9f9f9', '#ffffff'],
+  background: ['#ffffff', '#505050', '#f0f0f0', '#f9f9f9', '#ffffff'],
   text: ['#000000', '#252525', '#808080', '#bfbfbf', '#e5e5e5'],
 
   // Palette
@@ -40,8 +39,7 @@ export const colors = {
   orleans: ['#cb634b', '#ff6f4c', '#ffb7a5', '#ffdbd2', '#fff1ed'],
   perpignan: ['#714753', '#7d4e5b', '#bea6ad', '#ded3d6', '#f2edef'],
   quimper: ['#956052', '#a26959', '#d0b4ac', '#e8dad6', '#f6f0ee'],
-
-}
+};
 
 export const typography = {
   lineHeights: {
@@ -56,8 +54,8 @@ export const typography = {
     mega: '0.25em',
   },
   fonts: {
-    primary: '"Marianne", sans-serif',
-    headings: '"Marianne", sans-serif',
+    primary: '"Marianne", Arial, sans-serif',
+    headings: '"Marianne", Arial, sans-serif',
     code: '"SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace',
   },
   fontWeights: {
@@ -76,4 +74,4 @@ export const typography = {
     giant: '36px',
     hero: '48px',
   },
-}
+};

@@ -22,7 +22,6 @@ const useModal = () => {
     children: null,
   };
 
-
   return {
     show,
     hide,

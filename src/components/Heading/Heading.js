@@ -7,7 +7,7 @@ import {
   getFontWeight,
   getColor,
   getFont,
-  filterProps
+  filterProps,
 } from '../../theme/getters';
 
 const StyledHeading = styled(({ element: TextElement, children, ...props }) => (
@@ -26,12 +26,16 @@ const StyledHeading = styled(({ element: TextElement, children, ...props }) => (
 `;
 
 const Heading = ({ as, children, ...props }) => (
-  <StyledHeading element={as} { ...props }>
+  <StyledHeading element={as} {...props}>
     {children}
   </StyledHeading>
 );
 
 Heading.propTypes = {
+  /**
+  * Heading text
+  */
+  children: PropTypes.string,
   /**
   * html element rendered by Heading component
   */
@@ -71,7 +75,7 @@ Heading.propTypes = {
   * Define text decoration -- accepts valid css properties
   */
   decoration: PropTypes.string,
-}
+};
 
 Heading.defaultProps = {
   as: 'div',
@@ -81,7 +85,7 @@ Heading.defaultProps = {
   textAlign: 'left',
   font: 'primary',
   lineHeight: '1.3',
-  decoration: "none",
-}
+  decoration: 'none',
+};
 
 export default Text;

@@ -1,57 +1,77 @@
 {
   "name": "@folland87/puzzle",
-  "version": "0.3.2",
+  "version": "0.4.0",
+  "private": false,
   "description": "Puzzle, yet another design system",
   "author": "folland87",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/folland87/puzzle.git"
-  },
-  "main": "dist/index.js",
-  "module": "dist/index.modern.js",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
   "source": "src/index.js",
-  "engines": {
-    "node": ">=10"
+  "keywords": [
+    "react",
+    "components",
+    "design-system"
+  ],
+  "dependencies": {
+    "react-scripts": "^4.0.1",
+    "prop-types": "^15.0.0",
+    "styled-system": "^5.1.5"
   },
   "scripts": {
-    "build": "microbundle-crl --no-compress --format modern,cjs",
-    "start": "microbundle-crl watch --no-compress --format modern,cjs",
-    "prepare": "run-s build",
-    "test": "run-s test:unit test:lint test:build",
-    "test:build": "run-s build",
-    "test:lint": "eslint .",
-    "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
-    "test:watch": "react-scripts test --env=jsdom",
-    "predeploy": "cd example && npm install && npm run build",
-    "deploy": "gh-pages -d example/build"
+    "build": "rollup -c",
+    "build-watch": "rollup -c -w",
+    "styleguide": "styleguidist server",
+    "styleguide:build": "styleguidist build"
   },
-  "peerDependencies": {
-    "react": "^16.0.0",
-    "styled-components": "^5.2.1",
-    "react-icons": "^3.10.0"
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   },
   "devDependencies": {
-    "microbundle-crl": "^0.13.10",
-    "babel-eslint": "^10.0.3",
-    "cross-env": "^7.0.2",
-    "eslint": "^6.8.0",
+    "@babel/cli": "^7.12.8",
+    "@babel/core": "^7.12.9",
+    "@babel/preset-env": "^7.12.7",
+    "@babel/preset-react": "^7.12.7",
+    "@rollup/plugin-babel": "^5.2.1",
+    "@rollup/plugin-commonjs": "^16.0.0",
+    "@rollup/plugin-node-resolve": "10.0.0",
+    "@svgr/webpack": "^5.5.0",
+    "@testing-library/jest-dom": "^5.11.6",
+    "@testing-library/react": "^11.2.2",
+    "@testing-library/user-event": "^12.2.2",
     "eslint-config-airbnb": "^18.1.0",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-node": "^11.0.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-react": "^7.17.0",
-    "gh-pages": "^2.2.0",
     "npm-run-all": "^4.1.5",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-scripts": "^3.4.1"
+    "prop-types": "^15.0.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-icons": "^4.1.0",
+    "react-router-dom": "^5.0.0",
+    "react-styleguidist": "11.0.6",
+    "react-svg-loader": "^3.0.3",
+    "rollup": "^2.33.3",
+    "rollup-plugin-delete": "^2.0.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "styled-components": "5.2.1"
+  },
+  "peerDependencies": {
+    "react": ">= 16.8.0",
+    "react-dom": ">= 16.8.0",
+    "styled-components": ">= 5.0.0",
+    "react-router-dom": ">= 4.0.0",
+    "react-icons": ">= 3.1.0"
   },
   "files": [
     "dist",
-    "README.md"
-  ],
-  "dependencies": {
-    "styled-system": "^5.1.5"
-  }
+    "README.md",
+    "assets"
+  ]
 }

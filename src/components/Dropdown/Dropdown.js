@@ -5,22 +5,21 @@ import { space } from 'styled-system';
 import { get } from '../../theme/getters';
 import useSelect from '../../hooks/useSelect';
 
-
 /* Dropdown Content (Hidden by Default) */
 export const DropdownMenu = styled.div`
   padding: ${get('space.2')} 0;
   margin: ${get('space.2')} 0;
-  border-radius: ${({radius}) => get(`radius.${radius}`, radius)}};
-  background: ${get('colors.background.4')};
+  border-radius: ${({ radius }) => get(`radius.${radius}`, radius)}};
+  background: ${get('colors.light.0')};
   position: absolute;
-  left: ${({direction}) => (direction === 'right') ? '0' : undefined};
-  right: ${({direction}) => (direction === 'left') ? '0' : undefined};
+  left: ${({ direction }) => ((direction === 'right') ? '0' : undefined)};
+  right: ${({ direction }) => ((direction === 'left') ? '0' : undefined)};
   min-width: 200px;
   box-shadow: ${get('shadows.overlay')};
   z-index: 200;
   &:after, &:before {
     bottom: 100%;
-    left: ${({direction}) => (direction === 'left') ? '90%' : '10%'};
+    left: ${({ direction }) => ((direction === 'left') ? '90%' : '10%')};
     border: solid transparent;
     content: " ";
     height: 0;
@@ -31,7 +30,7 @@ export const DropdownMenu = styled.div`
 
   &:after {
     border-color: rgba(0, 0, 0, 0);
-    border-bottom-color: ${get('colors.background.4')};
+    border-bottom-color: ${get('colors.light.0')};
     border-width: 8px;
     margin-left: -8px;
   }
@@ -48,15 +47,15 @@ export const DropdownMenu = styled.div`
     align-items:center;
     color: #000;
     cursor: pointer;
-    background-color: ${get('colors.background.4')};
+    background-color: ${get('colors.light.0')};
     &:focus {
       outline: 2px solid transparent;
       background-color: ${get('colors.primary.1')};
-      color: ${get('colors.background.4')};
+      color: ${get('colors.light.4')};
     };
     &:hover {
       background-color: ${get('colors.primary.1')};
-      color: ${get('colors.background.4')};
+      color: ${get('colors.light.0')};
     }
   }
 `;
@@ -93,10 +92,15 @@ const StyledOverlay = styled.div`
 const Dropdown = ({ children, button, ...rest }) => {
   const selectRef = useRef(null);
   const optionsRef = useRef(null);
-  const { toggle, isOpen, onKeyDown, onClick } = useSelect(selectRef, optionsRef);
+  const {
+    toggle,
+    isOpen,
+    onKeyDown,
+    onClick,
+  } = useSelect(selectRef, optionsRef);
 
   return (
-    <DropdownContainer { ...rest }>
+    <DropdownContainer {...rest}>
       <DropdownButton
         tabIndex={0}
         ref={selectRef}
@@ -115,30 +119,30 @@ const Dropdown = ({ children, button, ...rest }) => {
                 ref={optionsRef}
                 onKeyDown={onKeyDown}
                 onClick={onClick}
-                { ...rest }
+                {...rest}
               >
                 {children}
               </DropdownMenu>
-              <StyledOverlay onClick={(e) => toggle(e)}/>
+              <StyledOverlay onClick={(e) => toggle(e)} />
             </>
           )
           : null
       }
     </DropdownContainer>
   );
-}
+};
+
 Dropdown.Button = DropdownButton;
 Dropdown.Menu = DropdownMenu;
-
 
 Dropdown.Menu.propTypes = {
   direction: PropTypes.oneOf(['left', 'right']),
   radius: PropTypes.string,
-}
+};
 
 Dropdown.Menu.defaultProps = {
   direction: 'right',
   radius: 'regular',
-}
+};
 
 export default Dropdown;

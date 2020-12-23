@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { getColor } from '../../theme/getters';
+import { get } from '../../theme/getters';
 
 export const StyledOverlay = styled.div`
   background-color: rgba(80, 80, 80, 0.5);
@@ -16,7 +16,7 @@ export const StyledModal = styled.dialog`
   display: flex;
   flex-direction: column;
   border: 0;
-  background: ${getColor('background-4')};
+  background: ${get('colors.light.0')};
   border-radius: 4px;
   min-width: 30rem;
   z-index: 2000;

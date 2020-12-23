@@ -1,17 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
 const useSelect = (bref, ref) => {
-
   const [isOpen, setIsOpen] = useState(false);
   const [activeElementIndex, setActiveElementIndex] = useState(null);
   const [selectedElement, setSelectedElement] = useState(null);
   const [focusableElements, setFocusableElements] = useState(null);
-  const getKeyboardFocusableElements = (element) => {
-    return [...element.querySelectorAll(
-      'a[href], button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])'
-    )]
-    .filter(el => !el.hasAttribute('disabled'))
-  }
+  const getKeyboardFocusableElements = (element) => ([...element.querySelectorAll(
+    'a[href], button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])',
+  )].filter((el) => !el.hasAttribute('disabled')));
 
   useEffect(() => {
     if (isOpen && !focusableElements) {
@@ -24,8 +20,7 @@ const useSelect = (bref, ref) => {
       setFocusableElements(null);
       setActiveElementIndex(null);
     }
-  }, [isOpen, activeElementIndex, focusableElements, ref, bref])
-
+  }, [isOpen, activeElementIndex, focusableElements, ref, bref]);
 
   const onKeyDown = (e) => {
     // User pressed the down arrow
@@ -33,8 +28,10 @@ const useSelect = (bref, ref) => {
     if (e.keyCode === 40) {
       if (activeElementIndex === null) return setActiveElementIndex(0);
       setActiveElementIndex((activeElementIndex) => (
-        ((activeElementIndex + 1) === focusableElements.length) ? activeElementIndex : (activeElementIndex + 1)
-      ))
+        ((activeElementIndex + 1) === focusableElements.length)
+          ? activeElementIndex
+          : (activeElementIndex + 1)
+      ));
       e.preventDefault();
     }
     // User pressed the up arrow
@@ -57,11 +54,11 @@ const useSelect = (bref, ref) => {
       e.preventDefault();
       toggle(e);
     }
-  }
+  };
   const onClick = (e) => {
     if (e.target.getAttribute("href")) {
       toggle(e);
-      return
+      return;
     };
     setSelectedElement(e.target.getAttribute('value'));
     toggle(e);

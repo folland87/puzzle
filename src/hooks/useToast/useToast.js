@@ -8,6 +8,11 @@ import PropTypes from 'prop-types';
 import Toast from '../../components/Toast';
 import { filterProps } from '../../theme/getters';
 
+/**
+ * Display a notification
+ *
+ * @visibleName useToast
+ */
 
 const ToastContext = React.createContext();
 
@@ -61,7 +66,6 @@ export const ToastContextProvider = ({ position, children }) => {
     return toastCount;
   }, []);
 
-
   return (
     <ToastContext.Provider value={{ toast, remove, toasts }}>
       {children}
@@ -73,7 +77,7 @@ export const ToastContextProvider = ({ position, children }) => {
                 key={toastOptions.id}
                 remove={remove}
                 position={position}
-                { ...toastOptions }
+                {...toastOptions}
               />
             ))}
           </StyledToastContainer>, document.body,

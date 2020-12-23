@@ -14,7 +14,7 @@ const useFocusTrap = (ref) => {
       setFocus((focus) => ((focus + 1) % focusableElements.length));
     }
     if (e.keyCode === 9 && e.shiftKey) {
-      setFocus((focus) => ((focus - 1 < 0) ? (focusableElements.length - 1) : (focus -1)));
+      setFocus((focus) => ((focus - 1 < 0) ? (focusableElements.length - 1) : (focus - 1)));
     }
   };
 

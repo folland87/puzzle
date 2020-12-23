@@ -1,5 +1,9 @@
 import { colors } from './primitives';
 
+// const colors = {
+//
+// }
+
 const buttons = {
   default: {
     color: '#202020',
@@ -8,46 +12,46 @@ const buttons = {
     active: '#bfbfbf',
   },
   info: {
-    background: '#fff',
-    color: "#2a7ffe",
-    hover: "#2a7ffe",
-    active: "#2a7ffe",
+    background: 'white',
+    color: colors.info[1],
+    hover: colors.info[4],
+    active: colors.info[0],
   },
   danger: {
-    background: '#fff',
-    color: colors.marianne[1],
-    hover: colors.marianne[4],
-    active: colors.marianne[0],
+    background: 'white',
+    color: colors.danger[1],
+    hover: colors.danger[4],
+    active: colors.danger[0],
   },
   success: {
-    background: '#fff',
-    color: colors.colmar[1],
-    hover: colors.colmar[4],
-    active: colors.colmar[0],
+    background: 'white',
+    color: colors.success[1],
+    hover: colors.success[4],
+    active: colors.success[0],
   },
   warning: {
-    background: '#fff',
-    color: colors.marignane[1],
-    hover: colors.marignane[4],
-    active: colors.marignane[0],
+    background: 'white',
+    color: colors.warning[1],
+    hover: colors.warning[4],
+    active: colors.warning[0],
   },
   primary: {
-    background: '#fff',
-    color: colors.france[1],
-    hover: colors.france[4],
-    active: colors.france[0],
+    background: 'white',
+    color: colors.primary[1],
+    hover: colors.primary[4],
+    active: colors.primary[0],
   },
   accent: {
-    background: '#fff',
-    color: colors.evreux[1],
-    hover: colors.evreux[4],
-    active: colors.evreux[0],
+    background: 'white',
+    color: colors.accent[1],
+    hover: colors.accent[4],
+    active: colors.accent[0],
   },
-}
+};
 
 export default {
   buttons,
-  breakpoints: ['32rem','48rem', '64rem'],
+  breakpoints: ['32rem', '48rem', '64rem'],
   space: ['0', '4px', '8px', '16px', '24px', '32px', '40px', '48px', '64px', '80px', '96px', '112px', '128px'],
   lineHeights: {
     solid: 1,
@@ -68,7 +72,7 @@ export default {
     extralarge: '56px',
     huge: '64px',
     giant: '72px',
-    hero:'96px',
+    hero: '96px',
   },
   fonts: {
     primary: '"Marianne", sans-serif',
@@ -100,7 +104,7 @@ export default {
   // colors: {
   //   colors,
   //   pagination: colors.frejus[1],
-  //   link: "#2a7ffe",
+  //   link: '#2a7ffe',
   // },
   elevations: [200, 400, 800, 1600, 2400],
   shadows: {

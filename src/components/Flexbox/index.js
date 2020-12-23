@@ -1,1 +1,1 @@
-export { FlexBox as default, FlexColumn, FlexRow } from './Flexbox';
+export { FlexBox, FlexColumn, FlexRow } from './Flexbox';

@@ -21,13 +21,13 @@ const StyledSpinner = styled.svg`
   }
 
   .internal-circle {
-    stroke: ${({color}) => get(`colors.${color}`, get('colors.link'))};
+    stroke: ${({ color }) => get(`colors.${color}`, get('colors.link'))};
     stroke-dasharray: 187;
     animation: internal 1s ease-in-out infinite;
   }
 
   .external-circle {
-    stroke: ${({color}) => get(`colors.${color}`, get('colors.link'))};
+    stroke: ${({ color }) => get(`colors.${color}`, get('colors.link'))};
     stroke-dasharray: 312;
     animation: external 1s linear infinite;
   }
@@ -57,6 +57,6 @@ const StyledSpinner = styled.svg`
       transform: rotate(450deg);
     }
   }
-`
+`;
 
 export default StyledSpinner;

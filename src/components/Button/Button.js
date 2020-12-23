@@ -9,12 +9,9 @@ import {
   StyledIconContainer,
 } from './styles';
 
-
 /**
  * The doadds button.
  *
- * @version 0.0.1
- * @author [Frédéric Olland](https://github.com/folland87)
  */
 const Button = (props) => {
   const {
@@ -29,19 +26,24 @@ const Button = (props) => {
   } = props;
   let ButtonComp = (variant === 'flat') ? FlatButton : DefaultButton;
   if (variant === 'filled') {
-    ButtonComp =  FilledButton;
+    ButtonComp = FilledButton;
   }
+  const { icon } = props;
 
   return (
     <ButtonComp aria-label={label || children} disabled={disabled || isLoading} {...rest}>
       <StyledButtonContent isLoading={isLoading}>
-        { (iconLeft) && (<StyledIconContainer focusable="false" position='left'>{iconLeft}</StyledIconContainer>) }
-        { (props.icon) ? props.icon : children }
-        { (iconRight) && (<StyledIconContainer focusable="false" position='right'>{iconRight}</StyledIconContainer>) }
+        { (iconLeft) && (
+          <StyledIconContainer focusable="false" position="left">{iconLeft}</StyledIconContainer>
+        ) }
+        { icon || children }
+        { (iconRight) && (
+          <StyledIconContainer focusable="false" position="right">{iconRight}</StyledIconContainer>
+        ) }
       </StyledButtonContent>
-      <StyledSpinner aria-hidden="true" focusable="false" isLoading={isLoading} {...rest}/>
+      <StyledSpinner aria-hidden="true" focusable="false" isLoading={isLoading} {...rest} />
     </ButtonComp>
-  )
+  );
 };
 
 Button.propTypes = {
@@ -83,6 +85,11 @@ Button.propTypes = {
   */
   disabled: PropTypes.bool,
   /**
+  * Sets an icon button
+  * Require an icon component.
+  */
+  icon: PropTypes.node,
+  /**
   * Sets an icon on children's left
   * Require an icon component.
   */
@@ -97,14 +104,13 @@ Button.propTypes = {
   * Require an icon component.
   */
   iconOnly: PropTypes.node,
-}
+};
 
 Button.defaultProps = {
   scale: 'medium',
   color: 'default',
   variant: 'default',
   radius: 'regular',
-}
+};
 
-/* @component */
 export default Button;
