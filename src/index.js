@@ -6,7 +6,7 @@ import Spinner from './components/Spinner';
 import Pagination from './components/Pagination';
 import InputText from './components/InputText';
 import Text from './components/Text';
-// import Logo from './components/Logo';
+import Logo from './components/Logo';
 import useTheme, { ThemeContextProvider } from './hooks/useTheme';
 import useToast, { ToastContextProvider } from './hooks/useToast';
 
@@ -17,7 +17,7 @@ export {
   FlexBox,
   FlexColumn,
   FlexRow,
-  // Logo,
+  Logo,
   Pagination,
   Spinner,
   InputText,

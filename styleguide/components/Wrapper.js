@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { ThemeContextProvider } from '../../src';
-import { ToastContextProvider } from '../../src';
+import { ThemeContextProvider, ToastContextProvider } from '../../src';
 import GlobalFonts from '../../src/hooks/useTheme/globalFonts';
 
 
