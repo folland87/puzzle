@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css, keyframes } from 'styled-components';
 
-import { get, filterProps } from '../../theme/getters';
+import { get, filterProps } from '../utils';
 
 const toastRight = keyframes`
   from { transform: translateX(100%); }
@@ -46,7 +46,7 @@ const getAnimation = (position) => {
 
 export const StyledToast = styled((props) => <div {...filterProps(props)} />)`
   position: relative;
-  background: ${get('colors.light.1')};
+  background: ${get('colors.light.0')};
   box-shadow: ${get('shadows.raised')};
   border-radius: ${get('radius.regular')};
   margin: ${get('space.3')};

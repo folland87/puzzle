@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { space, typography, color } from 'styled-system';
-import { filterProps } from '../../theme/getters';
+import { filterProps } from '../utils';
 
 const Text = styled((props) => (<span type="button" {...filterProps(props)} />))`
   letter-spacing: -0.015em;

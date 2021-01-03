@@ -6,7 +6,6 @@ import styled, { css } from 'styled-components';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import Toast from '../../components/Toast';
-import { filterProps } from '../../theme/getters';
 
 /**
  * Display a notification
@@ -44,7 +43,7 @@ const getPosition = (position) => {
       `;
   }
 };
-export const StyledToastContainer = styled(({ position, ...props }) => (<div {...filterProps(props)} />))`
+export const StyledToastContainer = styled.div`
   ${({ position }) => getPosition(position)};
   position: fixed;
   box-sizing: border-box;

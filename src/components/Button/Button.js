@@ -10,7 +10,7 @@ import {
 } from './styles';
 
 /**
- * The doadds button.
+ * The puzzle button.
  *
  */
 const Button = (props) => {
@@ -19,19 +19,33 @@ const Button = (props) => {
     variant,
     isLoading,
     iconLeft,
+    icon,
     iconRight,
     disabled,
     children,
+    color,
+    scale,
+    radius,
+    fullWidth,
+    onClick,
     ...rest
   } = props;
   let ButtonComp = (variant === 'flat') ? FlatButton : DefaultButton;
   if (variant === 'filled') {
     ButtonComp = FilledButton;
   }
-  const { icon } = props;
-
   return (
-    <ButtonComp aria-label={label || children} disabled={disabled || isLoading} {...rest}>
+    <ButtonComp
+      aria-label={label || children}
+      disabled={disabled || isLoading}
+      color={color}
+      radius={radius}
+      fullWidth={fullWidth}
+      scale={scale}
+      onClick={onClick}
+      icon={icon}
+      {...rest}
+    >
       <StyledButtonContent isLoading={isLoading}>
         { (iconLeft) && (
           <StyledIconContainer focusable="false" position="left">{iconLeft}</StyledIconContainer>
@@ -41,7 +55,14 @@ const Button = (props) => {
           <StyledIconContainer focusable="false" position="right">{iconRight}</StyledIconContainer>
         ) }
       </StyledButtonContent>
-      <StyledSpinner aria-hidden="true" focusable="false" isLoading={isLoading} {...rest} />
+      <StyledSpinner
+        aria-hidden="true"
+        focusable="false"
+        variant={variant}
+        isLoading={isLoading}
+        color={color}
+        scale={scale}
+      />
     </ButtonComp>
   );
 };
@@ -51,7 +72,11 @@ Button.propTypes = {
   * Button content. Required even for icon button as it sets the aria-label.
   * You may override the label with the label props if necessary.
   */
-  children: PropTypes.string,
+  children: PropTypes.string.isRequired,
+  /**
+  * Button onClick function
+  */
+  onClick: PropTypes.func,
   /**
   * Button label
   */
@@ -99,11 +124,6 @@ Button.propTypes = {
   * Require an icon component.
   */
   iconRight: PropTypes.node,
-  /**
-  * For icon button. Ignore any other icon and children prop.
-  * Require an icon component.
-  */
-  iconOnly: PropTypes.node,
 };
 
 Button.defaultProps = {
@@ -111,6 +131,14 @@ Button.defaultProps = {
   color: 'default',
   variant: 'default',
   radius: 'regular',
+  onClick: () => null,
+  label: null,
+  fullWidth: false,
+  isLoading: false,
+  disabled: null,
+  icon: null,
+  iconLeft: null,
+  iconRight: null,
 };
 
 export default Button;

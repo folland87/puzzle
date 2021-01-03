@@ -1,10 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import {
-  getColor,
-  get,
-  filterProps,
-} from '../../theme/getters';
+import { get, filterProps } from '../utils';
 
 export const StyledSelect = styled(React.forwardRef((props, ref) => (<div ref={ref} {...filterProps(props)} />)))`
   font-size: ${({ scale }) => get(`fontSizes.${scale}`)}};
@@ -12,8 +8,8 @@ export const StyledSelect = styled(React.forwardRef((props, ref) => (<div ref={r
   border-radius: ${({ radius }) => get(`radius.${radius}`, radius)}};
   font-family: ${get('fonts.primary')};
   cursor: pointer;
-  color: ${getColor('#000')};
-  background: ${getColor('background-3')};
+  color: ${get('colors.dark.0')};
+  background: ${get('colors.light.1')};
   display: inline-flex;
   min-width: 200px;
   width: fit-content;
@@ -24,7 +20,7 @@ export const StyledSelect = styled(React.forwardRef((props, ref) => (<div ref={r
   &:focus-within {
     outline: 2px solid transparent;
     box-shadow: ${get('shadows.overlay')};
-    background-color: ${getColor('background-4')};
+    background-color: ${get('colors.light.0')};
   };
   &:disabled {
     opacity: 0.2;
@@ -43,7 +39,7 @@ export const StyledList = styled(React.forwardRef((props, ref) => (<ul ref={ref}
   padding: 8px 0;
   margin: 8px 0;
   border-radius: 4px;
-  background: ${getColor('background-4')};
+  background: ${get('colors.light.0')};
   position: absolute;
   width: 100%;
   max-height: 300px;
@@ -72,15 +68,15 @@ export const StyledOption = styled.li`
   align-items:center;
   color: #000;
   cursor: pointer;
-  background-color: ${getColor('background-4')};
+  background-color: ${get('colors.light.0')};
   &:focus {
     outline: 2px solid transparent;
     background-color: #5770be;
-    color: ${getColor('background-4')};
+    color: ${get('colors.light.0')};
   }
   &:hover {
     background-color: #5770be;
-    color: ${getColor('background-4')};
+    color: ${get('colors.light.0')};
   }
 `;
 

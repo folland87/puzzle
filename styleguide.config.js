@@ -2,7 +2,7 @@ const path = require('path');
 
 const theme = {
   color: {
-    baseBackground: '#252525',
+    // baseBackground: '#252525',
   },
   fontFamily: {
     base: "'Marianne', sans-serif",
@@ -17,7 +17,7 @@ module.exports = {
         {
           test: /\.jsx?$/,
           exclude: /node_modules/,
-          loader: 'babel-loader'
+          loader: 'babel-loader',
         },
         {
           test: /\.svg$/,
@@ -27,20 +27,25 @@ module.exports = {
           test: /\.woff2$/,
           use: ['file-loader'],
         },
-      ]
-    }
+        {
+          test: /\.css$/,
+          use: ['css-loader'],
+        },
+      ],
+    },
   },
   components: 'src/components/**/[A-Z]*.js',
   styleguideComponents: {
     // StyleGuideRenderer: path.join(__dirname, 'styleguide/components/StyleGuide'),
     // TableOfContentsRenderer: path.join(__dirname, 'styleguide/components/TableOfContents'),
-    Wrapper: path.join(__dirname, 'styleguide/components/Wrapper')
+    Wrapper: path.join(__dirname, 'styleguide/components/Wrapper'),
   },
   getComponentPathLine(componentPath) {
     const name = path.basename(componentPath, '.js');
     return `import { ${name} } from '@folland87/puzzle';`;
   },
   title: 'Puzzle',
+  styleguideDir: 'build',
   // usageMode: 'expand',
   skipComponentsWithoutExample: true,
   pagePerSection: true,
@@ -62,6 +67,6 @@ module.exports = {
       sectionDepth: 1,
       content: 'src/hooks/README.md',
       components: 'src/hooks/**/use*.js',
-    }
+    },
   ],
 };

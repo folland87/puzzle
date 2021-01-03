@@ -1,9 +1,8 @@
 import React, { createContext, useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { ThemeProvider } from 'styled-components';
-import GlobalFonts from './globalFonts';
 import GlobalStyle from './globalStyle';
-import defaultTheme from '../../theme/defaultTheme';
+import defaultTheme from '../../theme';
 
 export const ThemeContext = createContext();
 
@@ -18,7 +17,6 @@ export const ThemeContextProvider = ({ children, themes }) => {
 
   return (
     <ThemeContext.Provider value={{ theme, themes, switchTheme }}>
-      <GlobalFonts />
       <GlobalStyle theme={theme} />
       <ThemeProvider theme={theme}>
         {children}

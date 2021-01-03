@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { get } from '../../theme/getters';
+import { get } from '../utils';
 
 export const StyledOverlay = styled.div`
   background-color: rgba(80, 80, 80, 0.5);

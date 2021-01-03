@@ -11,16 +11,7 @@ import {
 
 import Button from '../Button';
 import Text from '../Text';
-import {
-  getColor,
-  filterProps,
-  getFontSize,
-  getHeight,
-  getFont,
-  getRadius,
-  getSpace,
-  getElevation,
-} from '../../theme/getters';
+import { get, filterProps } from '../utils';
 
 const PaginationContainer = styled.div`
   ${margin};
@@ -38,23 +29,22 @@ const PaginationForm = styled.form`
 `;
 
 const PaginationInput = styled(({ pageCount, ...props }) => <input type="number" min={1} max={pageCount} {...filterProps(props)} />)`
-  color: ${getColor('text')};
-  background: ${getColor('background-2')};
+  color: ${get('colors.dark.1')};
+  background: ${get('colors.light.2')};
   text-align: center;
   max-width: 60px;
-  padding: 0 ${getSpace(1)};
-  border-radius: ${getRadius('regular')};
-  font-size: ${({ scale }) => getFontSize(scale)};
-  height: ${({ scale }) => getHeight(scale)};
-  font-family: ${getFont('primary')};
+  padding: 0 ${get('space.1')};
+  border-radius: ${get('radius.regular')};
+  font-size: ${({ scale }) => get(`fontSizes.${scale}`)};
+  height: ${({ scale }) => get(`heights.${scale}`)};
   min-width: 40px;
   cursor: text;
-  color: ${getColor('text')};
+  color: ${get('colors.dark.1')};
   border: 0;
   &:focus {
     outline: 2px solid transparent;
-    ${getElevation('raised')};
-    background-color: ${getColor('background-4')};
+    box-shadow: ${get('shadows.raised')};
+    background-color: ${get('colors.light.0')};
   };
   &:disabled {
     cursor: default;
@@ -90,7 +80,7 @@ export const Pagination = ({
         scale={scale}
         color={buttonColor}
         outline={buttonOutline}
-        variant='filled'
+        variant="filled"
         radius={buttonRadius}
         disabled={currentPage === 1}
         onClick={() => handleChange(1)}
@@ -101,7 +91,7 @@ export const Pagination = ({
         scale={scale}
         color={buttonColor}
         outline={buttonOutline}
-        variant='filled'
+        variant="filled"
         radius={buttonRadius}
         disabled={currentPage === 1}
         onClick={() => handleChange(currentPage - 1)}
@@ -127,7 +117,7 @@ export const Pagination = ({
         color={buttonColor}
         outline={buttonOutline}
         radius={buttonRadius}
-        variant='filled'
+        variant="filled"
         disabled={currentPage === pageCount}
         onClick={() => handleChange(currentPage + 1)}
         icon={<FaAngleRight aria-label="page suivante" />}
@@ -138,7 +128,7 @@ export const Pagination = ({
         color={buttonColor}
         outline={buttonOutline}
         radius={buttonRadius}
-        variant='filled'
+        variant="filled"
         disabled={currentPage === pageCount}
         onClick={() => handleChange(pageCount)}
         icon={<FaAngleDoubleRight aria-label="dernière page" />}

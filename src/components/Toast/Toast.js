@@ -61,8 +61,8 @@ const Toast = ({
             mr={1}
             ml="auto"
             onClick={() => remove(id)}
-            flat
-            color="secondary"
+            variant="flat"
+            scale="small"
             radius="rounded"
             icon={<FaTimes />}
           />

@@ -1,8 +1,10 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { margin } from 'styled-system';
+import { get, filterProps } from '../utils';
+
+// dependencies
 import Spinner from '../Spinner';
-import { get, filterProps } from '../../theme/getters';
 
 const iconButtonStyle = css`
   padding: 0;
@@ -17,7 +19,7 @@ const StyledButton = styled((props) => (<button type="button" {...filterProps(pr
   height: ${({ scale }) => get(`heights.${scale}`)}};
   font-family: ${get('fonts.primary')};
   text-decoration: none;
-  font-weight: ${get('fontWeights.semibold')};
+  font-weight: ${get('fontWeights.medium')};
   cursor: pointer;
   display: inline-flex;
   flex-wrap: 0;
@@ -36,12 +38,11 @@ const StyledButton = styled((props) => (<button type="button" {...filterProps(pr
     transform: translateY(1px);
   };
   &:disabled {
-    opacity: 0.3;
+    opacity: 0.5;
     cursor: not-allowed;
   };
   ${({ icon }) => (icon) && iconButtonStyle};
 `;
-
 
 export const DefaultButton = styled(StyledButton)`
   background: ${get('buttons.default.background')};
@@ -72,8 +73,8 @@ export const FilledButton = styled(StyledButton)`
 export const StyledSpinner = styled((props) => <Spinner {...filterProps(props)} />)`
   .internal-circle,
   .external-circle {
-    stroke: ${({ filled, color }) => (
-    (filled) ? get(`colors.${color}.4`) : get(`colors.${color}.1`)
+    stroke: ${({ variant, color }) => (
+    (variant === 'filled') ? get(`colors.${color}.4`) : get(`colors.${color}.0`)
   )}}
   position: absolute;
   display: ${({ isLoading }) => ((isLoading) ? 'block' : 'none')};

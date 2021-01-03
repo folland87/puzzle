@@ -7,7 +7,7 @@ Toast style
   position="top-left"
   autoDismissAfter={null}
   content="Je suis tout grillé ! "
-  description="Attention aux doigts... Tu risques de te brûler en me prenant tout de suite."
-  toastType="warning"
+  description="Attention aux doigts... Tu risques de te brûler."
+  toastType="info"
 />
 ```

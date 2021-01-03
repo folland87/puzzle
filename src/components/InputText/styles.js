@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { margin } from 'styled-system';
-import { get, filterProps } from '../../theme/getters';
+import { get, filterProps } from '../utils';
 
 export const StyledMessage = styled.p`
   font-family: ${get('fonts.primary')};
@@ -23,9 +23,10 @@ export const StyledLabel = styled.p`
   font-family: ${get('fonts.primary')};
   line-height: '1.75';
   margin-bottom: ${get('space.1')};
+  color: ${get('colors.dark.1')};
   &::after {
     content: ${({ isRequired }) => (isRequired) && '" *"'};
-    color: ${get('colors.warning.1')};
+    color: ${get('colors.danger.1')};
   }
 `;
 
@@ -63,7 +64,7 @@ export const StyledInputWrapper = styled((props) => <div {...filterProps(props)}
 
 export const StyledInputContainer = styled((props) => <div {...filterProps(props)} />)`
   color: ${get('colors.dark.1')};
-  background-color: ${get('colors.light.2')};
+  background-color: ${get('colors.light.1')};
   display: inline-flex;
   justify-content: start;
   align-items: center;

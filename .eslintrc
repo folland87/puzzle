@@ -5,6 +5,7 @@
     "airbnb/hooks"
   ],
   "rules": {
+    "react/jsx-props-no-spreading": 0,
     "react/jsx-filename-extension": [
       1,
       {

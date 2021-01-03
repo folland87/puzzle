@@ -6,8 +6,7 @@ import { margin } from 'styled-system';
 import Input from '../InputText';
 import Button from '../Button';
 import Spinner from '../Spinner';
-import { getColor, getRadius, getFontSize, filterProps } from '../../theme/getters';
-
+import { get, filterProps } from '../utils';
 
 const InputWrapper = styled((props) => <form role="search" {...filterProps(props)}/>)`
   ${margin}
@@ -26,24 +25,24 @@ const AutocompleteList = styled((props) => <ul {...filterProps(props)}/>)`
   margin: 0;
   padding: 0;
   z-index: 1000;
-  background-color: ${getColor('lightest')};
-  border-top: 1px solid ${getColor('medium')};
+  background-color: ${get('colors.light.0')};
+  border-top: 1px solid ${get('colors.light.4')};
   border-top-right-raduis: 0;
-  border-bottom-right-raduis: ${getRadius};
+  border-bottom-right-raduis: ${({ radius }) => get(`radius.${radius}`)};
   border-top-left-raduis: 0;
-  border-bottom-left-raduis: ${getRadius};
+  border-bottom-left-raduis: ${({ radius }) => get(`radius.${radius}`)};
   box-shadow: 0 4px 4px 0 rgba(65,65,65,.25), 0 0 0 1px rgba(65,65,65,.1);
   width: inherit;
 `;
 
 const AutocompleteInput = styled(Input)`
   flex-grow: 1;
-  ${({suggestions}) => (suggestions.length) && (
+  ${({ suggestions }) => (suggestions.length) && (
     `> div {
       &:focus-within {
-        border-top-right-radius: ${getRadius};
+        border-top-right-radius: ${({ radius }) => get(`radius.${radius}`)};
         border-bottom-right-radius: 0;
-        border-top-left-radius: ${getRadius};
+        border-top-left-radius: ${({ radius }) => get(`radius.${radius}`)};
         border-bottom-left-radius: 0;
       };
     }`
@@ -52,44 +51,49 @@ const AutocompleteInput = styled(Input)`
 
 const Suggestion = styled((props) => <li {...filterProps(props)}/>)`
   cursor: pointer;
-  font-size: ${({scale}) => getFontSize(scale)};
+  font-size: ${({ scale }) => getFontSize(scale)};
   padding: .5em 1rem;
   display: flex;
   align-items: center;
   &:hover {
-    background-color: ${getColor('primaryLight')}
+    background-color: ${get('colors.primary.3')}
   }
 `;
 const ActiveSuggestion = styled(Suggestion)`
-  background-color: ${getColor('primaryLight')}
+  background-color: ${get('colors.primary.3')}
 `;
 
 const usePrevious = (value) => {
-    const ref = useRef()
+  const ref = useRef();
 
-    useEffect(() => {
-      ref.current = value
-    }, [value])
+  useEffect(() => {
+    ref.current = value;
+  }, [value]);
 
-    return ref.current
-}
+  return ref.current;
+};
 
-const InputSearch = ({onChange, onSubmit, suggestions, ...props}) => {
+const InputSearch = ({
+  onChange,
+  onSubmit,
+  suggestions,
+  ...rest
+}) => {
   const inputRef = useRef(null);
   const [query, setQuery] = useState('');
   const previousQuery = usePrevious(query);
   const [isOpen, setIsOpen] = useState(false);
-  const [scope, setScope] = useState(props.scope);
+  const [scope, setScope] = useState(rest.scope);
   const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(null);
   const [suggestionList, setSuggestionList] = useState(suggestions);
   const actualQuery = useMemo(() => {
     if (previousQuery === query && suggestionList[activeSuggestionIndex]) {
-      return suggestionList[activeSuggestionIndex]
-    } else if (previousQuery !== query && suggestionList[activeSuggestionIndex]) {
+      return suggestionList[activeSuggestionIndex];
+    } if (previousQuery !== query && suggestionList[activeSuggestionIndex]) {
       setActiveSuggestionIndex(null);
       return query;
     }
-    return query
+    return query;
   }, [previousQuery, query, suggestionList, activeSuggestionIndex]);
 
   useEffect(() => {
@@ -98,13 +102,12 @@ const InputSearch = ({onChange, onSubmit, suggestions, ...props}) => {
   }, [suggestions]);
 
   useEffect(() => {
-    onChange(query)
+    onChange(query);
     // Adding onChange here makes an infinite loop.
     // eslint-disable-next-line
   }, [query]);
 
-
-  const onKeyDown = e => {
+  const onKeyDown = (e) => {
     // User pressed the enter key
     if (e.keyCode === 13) {
       if (actualQuery) {
@@ -119,17 +122,21 @@ const InputSearch = ({onChange, onSubmit, suggestions, ...props}) => {
     // User pressed the up arrow
     else if (e.keyCode === 38) {
       e.preventDefault();
-      setActiveSuggestionIndex((activeSuggestionIndex !== null && activeSuggestionIndex !== 0) ? activeSuggestionIndex - 1 : null)
+      setActiveSuggestionIndex(
+        (activeSuggestionIndex !== null && activeSuggestionIndex !== 0)
+          ? activeSuggestionIndex - 1
+          : null
+      );
     }
     // User pressed the down arrow
     else if (e.keyCode === 40) {
       if (activeSuggestionIndex !== null && activeSuggestionIndex < 5) {
-        setActiveSuggestionIndex(activeSuggestionIndex + 1)
+        setActiveSuggestionIndex(activeSuggestionIndex + 1);
       } else if (activeSuggestionIndex === null) {
-        setActiveSuggestionIndex(0)
+        setActiveSuggestionIndex(0);
       }
     }
-  }
+  };
 
   let suggestionsListComponent = null;
   if (isOpen && suggestionList.length) {
@@ -141,18 +148,18 @@ const InputSearch = ({onChange, onSubmit, suggestions, ...props}) => {
           if (activeSuggestionIndex === index) {
             return (
               <ActiveSuggestion
-                scale={props.scale}
+                scale={rest.scale}
                 key={index}
                 onMouseEnter={() => setActiveSuggestionIndex(index)}
                 onMouseDown={() => onSubmit(suggestion)}
               >
                 {suggestion}
               </ActiveSuggestion>
-            )
+            );
           }
           return (
             <Suggestion
-              scale={props.scale}
+              scale={rest.scale}
               key={index}
               onMouseEnter={() => setActiveSuggestionIndex(index)}
               onMouseDown={() => onSubmit(suggestion)}
@@ -165,38 +172,38 @@ const InputSearch = ({onChange, onSubmit, suggestions, ...props}) => {
     );
   }
 
-  let iconRight = <FaSearch onMouseDown= {() => onSubmit(query)} />
-  if (isOpen && query){
-    iconRight = <FaTimes onMouseDown= {() => setQuery('')} />
+  let iconRight = <FaSearch onMouseDown={() => onSubmit(query)} />;
+  if (isOpen && query) {
+    iconRight = <FaTimes onMouseDown={() => setQuery('')} />;
   }
-  if (props.isLoading){
-    iconRight = <Spinner size={24} color='primary' />
+  if (rest.isLoading) {
+    iconRight = <Spinner size={24} color="primary" />;
   }
 
   return (
     <InputWrapper
       onFocus={() => setIsOpen(true)}
       onBlur={() => {
-        setIsOpen(false)
-        setScope(props.scope)
+        setIsOpen(false);
+        setScope(rest.scope);
       }}
     >
       <AutocompleteInput
-        {...props}
+        {...rest}
         suggestions={suggestionList}
         ref={inputRef}
-        disabled={(props.isLoading)}
+        disabled={(rest.isLoading)}
         type="text"
         onChange={(e) => setQuery(e.target.value)}
         onKeyDown={(e) => onKeyDown(e)}
         value={actualQuery}
         iconRight={iconRight}
-        iconLeft={scope.value ? <Button as='span' scale='small' radius='regular' color='primary'>{scope.text}</Button> : null}
+        iconLeft={scope.value ? <Button as="span" scale="small" radius="regular" color="primary">{scope.text}</Button> : null}
       />
       {suggestionsListComponent}
     </InputWrapper>
   );
-}
+};
 
 InputSearch.propTypes = {
   suggestions: PropTypes.instanceOf(Array),
@@ -226,7 +233,7 @@ InputSearch.defaultProps = {
   /**
   * Set the loading state on search bar
   */
-  isLoading:  false,
+  isLoading: false,
 };
 
 export default InputSearch;

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { size } from 'styled-system';
-import { get } from '../../theme/getters';
+import { get } from '../utils';
 
 /**
  * Styled conponents loading spinner.

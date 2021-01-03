@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import { Link as RouterLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { space, typography, color } from 'styled-system';
-import { get, filterProps } from '../../theme/getters';
+import { get, filterProps } from '../utils';
 
 const linkStyles = css`
   color: ${get('colors.link')};

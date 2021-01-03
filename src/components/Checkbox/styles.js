@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { get } from '../../theme/getters';
+import { get } from '../utils';
 
 export const StyledCheckboxContainer = styled.div`
   display: inline-flex;

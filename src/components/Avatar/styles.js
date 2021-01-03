@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { margin, size } from 'styled-system';
-import { get } from '../../theme/getters';
+import { get } from '../utils';
 
 const getRadius = ({ size: avatarSize, square }) => {
   if (!square) return get('radius.rounded');

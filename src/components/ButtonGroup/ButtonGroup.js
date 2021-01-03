@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { get, filterProps } from '../../theme/getters';
+import { get, filterProps } from '../utils';
 
 /**
  * The doadds button group.

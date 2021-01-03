@@ -2,14 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { space } from 'styled-system';
-import { getColor, filterProps } from '../../theme/getters';
+import { get, filterProps } from '../utils';
 
 export const Separator = styled((props) => (<div {...filterProps(props)} />))`
   ${space};
   height: ${(props) => props.height};
   width: ${(props) => props.width};
-  color: ${getColor};
-  background-color: ${getColor};
+  color: ${({ color }) => get(`colors.${color}`)};
+  background-color: ${({ color }) => get(`colors.${color}`)};
 `;
 
 Separator.propTypes = {
