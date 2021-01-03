@@ -48,7 +48,9 @@ jobs:
         with:
           node-version: 12
       - run: npm install
-      - run: git config user.name "folland87" && git config user.email "frederic@olland.me"
+      - run: git config --global user.name "folland87"
+      - run: git config --global user.email "frederic@olland.me"
+      - run: git remote set-url origin https://github.com/folland87/puzzle.git
       - run: npm run deploy
         env:
           GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
