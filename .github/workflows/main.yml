@@ -51,4 +51,4 @@ jobs:
       - run: git config user.name "folland87" && git config user.email "frederic@olland.me"
       - run: npm run deploy
         env:
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
