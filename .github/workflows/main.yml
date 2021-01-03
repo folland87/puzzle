@@ -48,7 +48,7 @@ jobs:
         with:
           node-version: 12
       - run: npm install
-      - run: git config user.name "<user name>" && git config user.email "user email"
+      - run: git config user.name "folland87" && git config user.email "frederic@olland.me"
       - run: npm run deploy
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
