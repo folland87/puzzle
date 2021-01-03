@@ -6,38 +6,38 @@ on:
       - main
 jobs:
 
-  publish-npm:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 12
-          registry-url: 'https://registry.npmjs.org/'
-          scope: '@folland'
-      - run: printenv
-      - run: cat /home/runner/work/_temp/.npmrc
-      - run: npm install
-      - run: npm run build
-      - run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
-
-  publish-gpr:
-    needs: 'publish-npm'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 12
-          registry-url: 'https://npm.pkg.github.com/'
-          scope: '@folland87'
-      - run: npm install
-      - run: npm run build
-      - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+  # publish-npm:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - uses: actions/setup-node@v1
+  #       with:
+  #         node-version: 12
+  #         registry-url: 'https://registry.npmjs.org/'
+  #         scope: '@folland'
+  #     - run: printenv
+  #     - run: cat /home/runner/work/_temp/.npmrc
+  #     - run: npm install
+  #     - run: npm run build
+  #     - run: npm publish --access public
+  #       env:
+  #         NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+  #
+  # publish-gpr:
+  #   needs: 'publish-npm'
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - uses: actions/setup-node@v1
+  #       with:
+  #         node-version: 12
+  #         registry-url: 'https://npm.pkg.github.com/'
+  #         scope: '@folland87'
+  #     - run: npm install
+  #     - run: npm run build
+  #     - run: npm publish
+  #       env:
+  #         NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
   deploy-gh-pages:
     needs: ['publish-npm', 'publish-gpr']
@@ -47,7 +47,6 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-          registry-url: 'https://npm.pkg.github.com/'
       - run: npm install
       - run: git config user.name "<user name>" && git config user.email "user email"
       - run: npm run deploy
