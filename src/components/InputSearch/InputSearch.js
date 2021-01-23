@@ -1,5 +1,7 @@
-import React, { useState, useMemo, useRef, useEffect } from "react";
-import PropTypes from "prop-types";
+import React, {
+  useState, useMemo, useRef, useEffect,
+} from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { FaSearch, FaTimes } from 'react-icons/fa';
 import { margin } from 'styled-system';
@@ -8,7 +10,7 @@ import Button from '../Button';
 import Spinner from '../Spinner';
 import { get, filterProps } from '../utils';
 
-const InputWrapper = styled((props) => <form role="search" {...filterProps(props)}/>)`
+const InputWrapper = styled((props) => <form role="search" {...filterProps(props)} />)`
   ${margin}
   position: relative;
   width: ${({ width }) => width};
@@ -16,7 +18,7 @@ const InputWrapper = styled((props) => <form role="search" {...filterProps(props
   flex-direction: column;
 `;
 
-const AutocompleteList = styled((props) => <ul {...filterProps(props)}/>)`
+const AutocompleteList = styled((props) => <ul {...filterProps(props)} />)`
   position: absolute;
   list-style: none;
   left: 0;
@@ -26,6 +28,7 @@ const AutocompleteList = styled((props) => <ul {...filterProps(props)}/>)`
   padding: 0;
   z-index: 1000;
   background-color: ${get('colors.light.0')};
+  color: ${get('colors.dark.1')};
   border-top: 1px solid ${get('colors.light.4')};
   border-top-right-raduis: 0;
   border-bottom-right-raduis: ${({ radius }) => get(`radius.${radius}`)};
@@ -49,14 +52,15 @@ const AutocompleteInput = styled(Input)`
   )}
 `;
 
-const Suggestion = styled((props) => <li {...filterProps(props)}/>)`
+const Suggestion = styled((props) => <li {...filterProps(props)} />)`
   cursor: pointer;
-  font-size: ${({ scale }) => getFontSize(scale)};
+  font-size: ${({ scale }) => get(`fontSizes.${scale}`)};
   padding: .5em 1rem;
   display: flex;
   align-items: center;
   &:hover {
-    background-color: ${get('colors.primary.3')}
+    color: ${get('colors.light.0')};
+    background-color: ${get('colors.primary.2')}
   }
 `;
 const ActiveSuggestion = styled(Suggestion)`

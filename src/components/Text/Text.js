@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { space, typography, color } from 'styled-system';
-import { filterProps } from '../utils';
+import { space, typography } from 'styled-system';
+import { get, filterProps } from '../utils';
 
 const Text = styled((props) => (<span type="button" {...filterProps(props)} />))`
   letter-spacing: -0.015em;
@@ -11,7 +11,7 @@ const Text = styled((props) => (<span type="button" {...filterProps(props)} />))
   vertical-align: baseline;
   ${space};
   ${typography};
-  ${color};
+  color: ${({ color }) => get(`colors.${color}`)};
 `;
 
 Text.propTypes = {
@@ -22,7 +22,7 @@ Text.propTypes = {
 };
 
 Text.defaultProps = {
-  color: 'dark.1',
+  color: 'dark.3',
   fontSize: 'inherit',
   fontWeight: 'inherit',
   fontFamily: 'primary',

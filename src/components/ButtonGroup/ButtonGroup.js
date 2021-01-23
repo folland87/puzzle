@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { get, filterProps } from '../utils';
 
 /**
- * The doadds button group.
+ * The puzzle button group.
  *
  * @version 0.0.1
  * @author [Frédéric Olland](https://github.com/folland87)
@@ -17,7 +17,7 @@ const ButtonGroup = styled((props) => (<div {...filterProps(props)} />))`
   justify-content: center;
   align-items: center;
   box-shadow: ${get('shadows.out')};
-  border-radius: ${get('radius.regular')};
+  border-radius: ${({ radius }) => get(`radius.${radius}`)};
   > button {
     box-shadow: unset;
   };

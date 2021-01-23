@@ -18,14 +18,14 @@ export const StyledMessage = styled.p`
 `;
 
 export const StyledLabel = styled.p`
-  font-size: ${get('fontSizes.medium')};
-  font-weight: ${get('fontWeights.semibold')};
+  font-size: ${get('fontSizes.small')};
+  font-weight: ${get('fontWeights.medium')};
   font-family: ${get('fonts.primary')};
   line-height: '1.75';
   margin-bottom: ${get('space.1')};
   color: ${get('colors.dark.1')};
   &::after {
-    content: ${({ isRequired }) => (isRequired) && '" *"'};
+    content: ${({ isRequired }) => (isRequired) && '"*"'};
     color: ${get('colors.danger.1')};
   }
 `;
