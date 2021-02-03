@@ -7,7 +7,6 @@ on:
 jobs:
 
   deploy-gh-pages:
-    needs: ['publish-npm', 'publish-gpr']
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
