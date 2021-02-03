@@ -1,6 +1,6 @@
 export default {
   marianne: ['#cb000e', '#e1000f', '#f08087', '#f8bfc3', '#fce6e7'],
-  france: ['#000083', '#000091', '#8080c8', '#bfbfe4', '#e6e6f4'],
+  france: ['#000083', '#000091', '#8080c8', '#bfbfe3', '#e6e6f4'],
   monochrome: ['#000000', '#404040', '#808080', '#bfbfbf', '#f5f5f5'],
   annecy: ['#877e59', '#958b62', '#cac5b1', '#e5e2d8', '#f4f3ef'],
   brest: ['#88a34a', '#91ae4f', '#c8d7a7', '#e3ebd3', '#f4f7ed'],

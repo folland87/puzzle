@@ -1,49 +1,68 @@
 import { createGlobalStyle } from 'styled-components';
 
-import MarianneThin from '../../fonts/Marianne/Marianne-Thin.woff2';
+import MarianneLightItalic from '../../fonts/Marianne/Marianne-Light_Italic.woff2';
 import MarianneLight from '../../fonts/Marianne/Marianne-Light.woff2';
 import MarianneRegular from '../../fonts/Marianne/Marianne-Regular.woff2';
-import MarianneMedium from '../../fonts/Marianne/Marianne-Medium.woff2';
+import MarianneRegularItalic from '../../fonts/Marianne/Marianne-Regular_Italic.woff2';
 import MarianneBold from '../../fonts/Marianne/Marianne-Bold.woff2';
-import MarianneExtrabold from '../../fonts/Marianne/Marianne-ExtraBold.woff2';
+import MarianneBoldItalic from '../../fonts/Marianne/Marianne-Bold_Italic.woff2';
+import SpectralExtrabold from '../../fonts/Spectral/Spectral-ExtraBold.woff2';
+import SpectralRegular from '../../fonts/Spectral/Spectral-Regular.woff2';
 
 export default createGlobalStyle`
 @font-face {
   font-family: 'Marianne';
-  font-style:  normal;
-  font-weight: 400;
-  src: local('Marianne'), url(${MarianneRegular}) format("woff2");
-}
-@font-face {
-  font-family: 'Marianne';
-  font-style:  normal;
-  font-weight: 300;
   src: local('Marianne'), url(${MarianneLight}) format("woff2");
+  font-weight: 300;
+  font-style: normal;
 }
 
 @font-face {
   font-family: 'Marianne';
-  font-style:  normal;
-  font-weight: 500;
-  src: local('Marianne'), url(${MarianneMedium}) format("woff2");
-}
-@font-face {
-  font-family: 'Marianne';
-  font-style:  normal;
-  font-weight: 200;
-  src: local('Marianne'), url(${MarianneThin}) format("woff2");
+  src: local('Marianne'), url(${MarianneLightItalic}) format("woff2");
+  font-weight: 300;
+  font-style: italic;
 }
 
 @font-face {
   font-family: 'Marianne';
-  font-style:  normal;
-  font-weight: 600;
+  src: local('Marianne'), url(${MarianneRegular}) format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Marianne';
+  src: local('Marianne'), url(${MarianneRegularItalic}) format("woff2");
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Marianne';
   src: local('Marianne'), url(${MarianneBold}) format("woff2");
+  font-weight: 700;
+  font-style: normal;
 }
+
 @font-face {
   font-family: 'Marianne';
-  font-style:  italic;
+  src: local('Marianne'), url(${MarianneBoldItalic}) format("woff2");
   font-weight: 700;
-  src: local('Marianne'), url(${MarianneExtrabold}) format("woff2");
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Spectral';
+  src: local('Spectral'), url(${SpectralRegular}) format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Spectral';
+  src: local('Spectral'), url(${SpectralExtrabold}) format("woff2");
+  font-weight: 900;
+  font-style: normal;
 }
 `;

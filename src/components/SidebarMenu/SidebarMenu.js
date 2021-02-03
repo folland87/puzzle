@@ -1,20 +1,19 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { FaBars } from 'react-icons/fa';
+import { RiMenuLine } from 'react-icons/ri';
 
-import Button from '../Button';
-import { StyledSidebarMenu, StyledSidebarDrawer } from './styles';
+import { Button } from '../Button';
+import { StyledSidebarMenu, StyledMenu } from './styles';
 
-const Drawer = ({ children, side }) => {
+const SidebarMenu = ({ children, side }) => {
   const [isOpen, setOpen] = useState(false);
   return (
     <>
-      <StyledSidebarDrawer isOpen={isOpen} onClick={() => setOpen(!isOpen)} />
+      <StyledMenu isOpen={isOpen} onClick={() => setOpen(!isOpen)} />
       <Button
         onClick={() => setOpen(!isOpen)}
-        scale="large"
-        color="secondary"
-        icon={<FaBars />}
+        secondary
+        icon={<RiMenuLine />}
       />
       <StyledSidebarMenu isOpen={isOpen} side={side}>
         {children}
@@ -23,20 +22,20 @@ const Drawer = ({ children, side }) => {
   );
 };
 
-Drawer.propTypes = {
+SidebarMenu.propTypes = {
   /**
   * Side menu content
   */
-  children: PropTypes.node,
+  children: PropTypes.node.isRequired,
   /**
   * Sets the drawer position on the screen.
   */
   side: PropTypes.oneOf(['left', 'right']),
 };
 
-Drawer.defaultProps = {
+SidebarMenu.defaultProps = {
   side: 'right',
 };
 
 /* @component */
-export default Drawer;
+export default SidebarMenu;

@@ -32,13 +32,14 @@ const Main = styled.div`
   margin: 0;
 `;
 
-export function StyleGuideRenderer({ classes, toc, title, homepageUrl, children, hasSidebar }) {
-	return (
+// other possible props: classes, toc, title, homepageUrl,
+export function StyleGuideRenderer({ children, hasSidebar, toc }) {
+  return (
     <>
-  		<Content>
-  			<Main>
-  				{children}
-  			</Main>
+      <Content>
+        <Main>
+          {children}
+        </Main>
         {
           hasSidebar && (
             <Sidebar>
@@ -46,16 +47,16 @@ export function StyleGuideRenderer({ classes, toc, title, homepageUrl, children,
             </Sidebar>
           )
         }
-  		</Content>
+      </Content>
     </>
-	);
+  );
 }
 
 StyleGuideRenderer.propTypes = {
-	classes: PropTypes.object.isRequired,
-	title: PropTypes.string.isRequired,
-	homepageUrl: PropTypes.string.isRequired,
-	children: PropTypes.node.isRequired,
+  classes: PropTypes.object.isRequired,
+  toc: PropTypes.object.isRequired,
+  hasSidebar: PropTypes.bool.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 export default StyleGuideRenderer;

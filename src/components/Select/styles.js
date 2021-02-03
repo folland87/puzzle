@@ -4,7 +4,7 @@ import { get, filterProps } from '../utils';
 
 export const StyledSelect = styled(React.forwardRef((props, ref) => (<div ref={ref} {...filterProps(props)} />)))`
   font-size: ${({ scale }) => get(`fontSizes.${scale}`)}};
-  height: ${({ scale }) => get(`heights.${scale}`)}};
+  line-height: ${get('lineHeights.inputs')};
   border-radius: ${({ radius }) => get(`radius.${radius}`, radius)}};
   font-family: ${get('fonts.primary')};
   cursor: pointer;
@@ -33,7 +33,6 @@ export const StyledSelect = styled(React.forwardRef((props, ref) => (<div ref={r
 
 export const StyledList = styled(React.forwardRef((props, ref) => (<ul ref={ref} {...props} />)))`
   list-style: none;
-  top: ${({ scale }) => get(`heights.${scale}`)}};
   left: 0;
   right: 0;
   padding: 8px 0;
@@ -62,7 +61,7 @@ export const StyledOverlay = styled.div`
 export const StyledOption = styled.li`
   font-family: "Marianne", sans-serif;
   font-size: ${({ scale }) => get(`fontSizes.${scale}`)}};
-  height: ${({ scale }) => get(`heights.${scale}`)}};
+  line-height: ${get('lineHeights.inputs')};
   display: flex;
   padding: 0 16px;
   align-items:center;

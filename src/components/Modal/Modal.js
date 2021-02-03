@@ -1,9 +1,11 @@
 import React, { useRef } from 'react';
 import ReactDOM from 'react-dom';
-import { FaTimes } from 'react-icons/fa';
-import Button from '../Button';
-import Text from '../Text';
-import { FlexBox, FlexRow } from '../Flexbox';
+import { RiCloseLine } from 'react-icons/ri';
+import { Button } from '../Button';
+import { Title } from '../Headings';
+import { FlexRow } from '../Flexbox';
+import Box from '../Box';
+
 import useFocusTrap from '../../hooks/useFocusTrap';
 import { StyledOverlay, StyledModal } from './styles';
 
@@ -36,18 +38,12 @@ const Modal = ({ children, title, hide }) => {
           onKeyDown={(e) => handleAllKeyDown(e)}
         >
           <FlexRow alignItems="center" flexShrink={0}>
-            <Text m={1} mr="auto" fontWeight="bold" fontSize="extralarge">{title}</Text>
-            <Button
-              onClick={hide}
-              color="secondary"
-              radius="rounded"
-              flat
-              icon={<FaTimes />}
-            />
+            <Title mr="auto" htmlTag="h1" titleStyle="H3">{title}</Title>
+            <Button onClick={hide} secondary icon={<RiCloseLine />} scale="tiny" />
           </FlexRow>
-          <FlexBox pt={3}>
+          <Box pt={3}>
             {children}
-          </FlexBox>
+          </Box>
         </StyledModal>
       </StyledOverlay>, document.body,
     )

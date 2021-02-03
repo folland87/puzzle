@@ -43,7 +43,7 @@ const Select = ({ onSelect, options, ...rest }) => {
           ? (
             <>
               <StyledList ref={optionsRef} tabIndex={!isOpen ? '-1' : undefined} onKeyDown={onKeyDown} onClick={onClick} {...rest}>
-                {options && options.map((option, i) => (
+                {options && options.map((option) => (
                   <StyledOption tabIndex={0} key={option.value} value={option.value} {...rest}>
                     {option.label || option.value}
                   </StyledOption>

@@ -1,5 +1,5 @@
 ```jsx padded
-import Button from '../../components/Button';
+import { Button } from '../../components/Button';
 import useToast from './useToast';
 const { toast } = useToast();
 <>

@@ -4,7 +4,7 @@ bla
 ```jsx
 import React, { useRef } from 'react';
 import useSelect from './useSelect';
-import Button from '../../components/Button';
+import { Button } from '../../components/Button';
 import Text from '../../components/Text';
 import { FaCaretDown, FaCaretUp } from 'react-icons/fa';
 

@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { RiCloseLine } from 'react-icons/ri';
 import {
-  DefaultButton,
-  FilledButton,
+  PrimaryButton,
+  SecondaryButton,
   FlatButton,
   StyledButtonContent,
   StyledSpinner,
@@ -13,10 +14,65 @@ import {
  * The puzzle button.
  *
  */
-const Button = (props) => {
+// const IconButton = () => {};
+// const LinkButton = () => {};
+// const Button = () => {};
+
+export const CloseButton = (props) => <Button secondary icon={<RiCloseLine {...props} />} />;
+
+export const LinkButton = (props) => {
   const {
     label,
-    variant,
+    secondary,
+    isLoading,
+    iconLeft,
+    icon,
+    iconRight,
+    disabled,
+    children,
+    color,
+    scale,
+    radius,
+    fullWidth,
+    to,
+    ...rest
+  } = props;
+  return (
+    <FlatButton
+      aria-label={label || children}
+      disabled={disabled || isLoading}
+      color={color}
+      fullWidth={fullWidth}
+      scale={scale}
+      icon={icon}
+      to={to}
+      {...rest}
+    >
+      <StyledButtonContent isLoading={isLoading}>
+        { (iconLeft) && (
+          <StyledIconContainer scale={scale} focusable="false" position="left">{iconLeft}</StyledIconContainer>
+        ) }
+        { (icon) ? <StyledIconContainer scale={scale} focusable="false">{icon}</StyledIconContainer> : children }
+        { (iconRight) && (
+          <StyledIconContainer scale={scale} focusable="false" position="right">{iconRight}</StyledIconContainer>
+        ) }
+      </StyledButtonContent>
+      <StyledSpinner
+        aria-hidden="true"
+        focusable="false"
+        secondary={secondary}
+        isLoading={isLoading}
+        color={color}
+        scale={scale}
+      />
+    </FlatButton>
+  );
+};
+
+export const Button = (props) => {
+  const {
+    label,
+    secondary,
     isLoading,
     iconLeft,
     icon,
@@ -30,35 +86,31 @@ const Button = (props) => {
     onClick,
     ...rest
   } = props;
-  let ButtonComp = (variant === 'flat') ? FlatButton : DefaultButton;
-  if (variant === 'filled') {
-    ButtonComp = FilledButton;
-  }
+  const ButtonComp = (secondary) ? SecondaryButton : PrimaryButton;
   return (
     <ButtonComp
       aria-label={label || children}
       disabled={disabled || isLoading}
       color={color}
-      radius={radius}
       fullWidth={fullWidth}
       scale={scale}
       onClick={onClick}
       icon={icon}
       {...rest}
     >
-      <StyledButtonContent isLoading={isLoading}>
+      <StyledButtonContent isLoading={isLoading} icon={icon}>
         { (iconLeft) && (
-          <StyledIconContainer focusable="false" position="left">{iconLeft}</StyledIconContainer>
+          <StyledIconContainer scale={scale} focusable="false" position="left">{iconLeft}</StyledIconContainer>
         ) }
-        { icon || children }
+        { (icon) ? <StyledIconContainer scale={scale} focusable="false">{icon}</StyledIconContainer> : children }
         { (iconRight) && (
-          <StyledIconContainer focusable="false" position="right">{iconRight}</StyledIconContainer>
+          <StyledIconContainer scale={scale} focusable="false" position="right">{iconRight}</StyledIconContainer>
         ) }
       </StyledButtonContent>
       <StyledSpinner
         aria-hidden="true"
         focusable="false"
-        variant={variant}
+        secondary={secondary}
         isLoading={isLoading}
         color={color}
         scale={scale}
@@ -72,7 +124,7 @@ Button.propTypes = {
   * Button content. Required even for icon button as it sets the aria-label.
   * You may override the label with the label props if necessary.
   */
-  children: PropTypes.string.isRequired,
+  children: PropTypes.string,
   /**
   * Button onClick function
   */
@@ -84,7 +136,7 @@ Button.propTypes = {
   /**
   * Button size
   */
-  scale: PropTypes.oneOf(['small', 'medium', 'large']),
+  scale: PropTypes.oneOf(['tiny', 'small', 'regular', 'large']),
   /**
   * Button color
   */
@@ -92,7 +144,7 @@ Button.propTypes = {
   /**
   * Button variant
   */
-  variant: PropTypes.oneOf(['default', 'flat', 'filled']),
+  secondary: PropTypes.bool,
   /**
   * One of themes radii for button border-radius
   */
@@ -127,10 +179,11 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
-  scale: 'medium',
+  children: null,
+  scale: 'regular',
   color: 'default',
-  variant: 'default',
-  radius: 'regular',
+  secondary: false,
+  radius: 'sharp',
   onClick: () => null,
   label: null,
   fullWidth: false,
@@ -141,4 +194,7 @@ Button.defaultProps = {
   iconRight: null,
 };
 
-export default Button;
+LinkButton.propTypes = Button.propTypes;
+LinkButton.defaultProps = Button.defaultProps;
+CloseButton.propTypes = Button.propTypes;
+CloseButton.defaultProps = Button.defaultProps;

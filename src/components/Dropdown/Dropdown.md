@@ -5,14 +5,15 @@ import { FaCaretDown } from 'react-icons/fa';
 import Link from '../Link';
 import { FlexRow } from '../Flexbox';
 import Text from '../Text';
+import { Button } from '../Button';
 import Separator from '../Separator';
 
 const button = (
   <>
-    <Text as="span" fontWeight="bold">
+    <Button>
       About
       <FaCaretDown />
-    </Text>
+    </Button>
   </>
 );
 <FlexRow>

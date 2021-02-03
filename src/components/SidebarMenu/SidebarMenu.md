@@ -2,7 +2,7 @@ drawer:
 
 
 ```jsx
-<Drawer>
+<SidebarMenu>
   Anything inside drawer
-</Drawer>
+</SidebarMenu>
 ```

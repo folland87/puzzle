@@ -15,9 +15,10 @@ export const StyledSidebarMenu = styled.div`
   display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
   transition: transform 0.3s ease-out;
   transition-delay: 0.2s;
+  padding: 16px;
 `;
 
-export const StyledSidebarDrawer = styled.div`
+export const StyledMenu = styled.div`
   background-color: rgba(0,0,0,.75);
   height: 100vh;
   width: 100vw;

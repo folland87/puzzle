@@ -1,68 +1,76 @@
 ```jsx padded
-import { FaChevronRight } from 'react-icons/fa';
-import Avatar from '../Avatar';
+import { Button } from '.';
+import { RiArrowRightLine } from 'react-icons/ri';
+
 <>
-  <Button iconRight={<FaChevronRight />} color="success" scale="small" label="Push me i'm famous">
+  <Button scale="tiny" label="Push me i'm famous">
     Click Me
   </Button>
-  <Button iconRight={<FaChevronRight />} iconLeft={<FaChevronRight />} scale="medium">
+  <Button isLoading scale="small">
    Test button
   </Button>
-  <Button scale="large" icon={<FaChevronRight />}>
+  <Button iconRight={<RiArrowRightLine />} scale="regular">
+   Test button
+  </Button>
+  <Button scale="large">
     Click Me
   </Button>
 </>
 ```
 
 ```jsx padded
-<Button variant='filled'>
-  Click Me
-</Button>
-<Button isLoading variant='filled' color="primary">
-  Click Me
-</Button>
-<Button variant='filled' color="info">
-  Click Me
-</Button>
-<Button variant='filled' color="danger">
-  Click Me
-</Button>
+import { Button } from '.';
+<>
+  <Button secondary>
+    Click Me
+  </Button>
+  <Button isLoading secondary>
+    Click Me
+  </Button>
+  <Button secondary>
+    Click Me
+  </Button>
+  <Button secondary disabled>
+    Click Me
+  </Button>
+</>
 ```
 
 ```jsx padded
-<Button variant="flat">
-  Click Me
-</Button>
-<Button isLoading variant="flat" color="primary">
-  Click Me
-</Button>
-<Button variant="flat" color="success">
-  Click Me
-</Button>
-<Button variant="flat" color="danger">
-  Click Me
-</Button>
+import { LinkButton } from '.';
+import { RiArrowRightLine } from 'react-icons/ri';
+<>
+  <LinkButton>
+    Click Me
+  </LinkButton>
+  <LinkButton iconRight={<RiArrowRightLine />}>
+    Click Me
+  </LinkButton>
+</>
 ```
 
 ```jsx padded
-import { FaEllipsisV, FaBars, FaCoffee } from 'react-icons/fa';
+import { RiMenuLine, RiCloseLine } from 'react-icons/ri';
+import { Button, CloseButton } from '.';
 
 <>
-  <Button radius="rounded" label="bye me a coffee" scale="extralarge" icon={<FaCoffee />} />
-
-  <Button radius="rounded" icon={<FaBars />}>
+  <Button scale="tiny" secondary label="bye me a coffee" icon={<RiMenuLine />} />
+  <Button scale="large">
     Click Me
   </Button>
-  <Button radius="rounded" outline icon={<FaBars />}>
+  <Button icon={<RiMenuLine />}>
     Click Me
   </Button>
-  <Button radius="rounded" scale="tiny" icon={<FaEllipsisV />}>
+  <Button secondary icon={<RiCloseLine />}/>
+  <Button secondary scale="tiny" icon={<RiMenuLine />}>
     Click Me
   </Button>
 </>
 ```
 
 ```jsx padded
+import { Button } from '.';
+
 <>
   <Button scale='large' isLoading>
     Click Me

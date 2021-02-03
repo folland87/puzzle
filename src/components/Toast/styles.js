@@ -48,14 +48,13 @@ export const StyledToast = styled((props) => <div {...filterProps(props)} />)`
   position: relative;
   background: ${get('colors.light.0')};
   box-shadow: ${get('shadows.raised')};
-  border-radius: ${get('radius.regular')};
+  border-radius: ${get('radius.sharp')};
   margin: ${get('space.3')};
   display: flex;
   flexWrap: nowrap;
   align-items: flex-start;
   min-height: 40px;
   width: 320px;
-  ${({ position }) => getAnimation(position)};
 `;
 
 export const StyledProgressBar = styled.div`
@@ -64,33 +63,40 @@ export const StyledProgressBar = styled.div`
   bottom: 0;
   left: 0;
   position: absolute;
-  width: ${get('space.6')};
+  width: ${get('space.2')};
   background: rgba(0,0,0,.1);
 `;
 
+export const StyledToastIcon = styled.span`
+  position: absolute;
+  font-size: ${get('fontSizes.large')};
+  color: ${get('colors.dark.0')};
+  top: ${get('space.2')};
+  left: ${get('space.3')};
+`;
+
+export const StyledCloseButton = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+`;
+
 export const StyledColoredBox = styled.div`
-  border-bottom-left-radius: ${get('radius.regular')};
-  border-top-left-radius: ${get('radius.regular')};
-  width: ${get('space.6')};
+  width: ${get('space.2')};
   position: absolute;
   top: 0;
   bottom: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${({ toastType }) => get(`colors.${toastType}.1`)};
-  > svg {
-    color: ${get('colors.light.1')};
-    z-index: 100;
-    font-size: 1.3em;
-  }
+  background-color: ${({ toastType }) => get(`colors.${toastType}`)};
 `;
 
 export const StyledToastContent = styled.div`
-  margin-left: ${get('space.6')};
+  position: relative;
   width: 100%;
+  height: 100%;
   display: flex;
-  padding: ${get('space.2')};
   flex-direction: column;
   justify-content: space-between;
 `;

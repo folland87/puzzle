@@ -1,8 +1,10 @@
 export default {
   lineHeights: {
     solid: 1,
-    title: 1.3,
+    title: 1.25,
+    subtitle: 1.375,
     copy: 1.5,
+    inputs: 2.25,
   },
   letterSpacings: {
     normal: 'normal',
@@ -12,23 +14,24 @@ export default {
   },
   fonts: {
     primary: '"Marianne", Arial, sans-serif',
-    headings: '"Marianne", Arial, sans-serif',
+    alternative: '"Spectral", Georgia, serif',
     code: '"SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace',
   },
   fontWeights: {
-    thin: 300,
+    light: 300,
     regular: 400,
-    medium: 500,
-    bold: 600,
+    bold: 700,
+    extrabold: 900,
   },
   fontSizes: {
     tiny: '12px',
     small: '14px',
     regular: '16px',
     large: '20px',
-    extralarge: '24px',
-    huge: '28px',
-    giant: '36px',
-    hero: '48px',
+    lead: '24px',
+    h4: '22px',
+    h3: '24px',
+    h2: '32px',
+    h1: '48px',
   },
 };

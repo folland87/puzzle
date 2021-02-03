@@ -1,21 +1,22 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import {
-  FaTimesCircle,
-  FaTimes,
-  FaInfoCircle,
-  FaCheckCircle,
-  FaExclamationCircle,
-} from 'react-icons/fa';
+  RiCloseLine,
+  RiInformationLine,
+  RiCheckLine,
+  RiAlertLine,
+} from 'react-icons/ri';
 import usePausableTimer from '../../hooks/usePausableTimer';
-import Button from '../Button';
+import { Button } from '../Button';
 import Text from '../Text';
-import { FlexRow } from '../Flexbox';
+import { FlexColumn } from '../Flexbox';
 import {
   StyledToast,
   StyledProgressBar,
   StyledColoredBox,
   StyledToastContent,
+  StyledToastIcon,
+  StyledCloseButton,
 } from './styles';
 
 // Toast component
@@ -33,10 +34,10 @@ const Toast = ({
   const { paused, pause, resume } = usePausableTimer(removeSelf, autoDismissAfter);
 
   const icon = {
-    info: <FaInfoCircle />,
-    warning: <FaExclamationCircle />,
-    success: <FaCheckCircle />,
-    danger: <FaTimesCircle />,
+    info: <RiInformationLine />,
+    warning: <RiAlertLine />,
+    success: <RiCheckLine />,
+    danger: <RiCloseLine />,
   };
   return (
     <StyledToast
@@ -45,7 +46,6 @@ const Toast = ({
       onMouseLeave={resume}
     >
       <StyledColoredBox toastType={toastType}>
-        {icon[toastType]}
         {
           (autoDismissAfter !== 0)
             ? (<StyledProgressBar paused={paused} autoDismissAfter={autoDismissAfter} />)
@@ -53,23 +53,20 @@ const Toast = ({
         }
       </StyledColoredBox>
       <StyledToastContent role="alert">
-        <FlexRow alignItems="center">
-          <Text m={0} fontWeight="medium">
-            {content}
-          </Text>
+        <StyledCloseButton>
           <Button
-            mr={1}
-            ml="auto"
+            m={0}
             onClick={() => remove(id)}
-            variant="flat"
-            scale="small"
-            radius="rounded"
-            icon={<FaTimes />}
+            secondary
+            icon={<RiCloseLine />}
+            scale="tiny"
           />
-        </FlexRow>
-        <FlexRow>
-          {description && (<Text mt={1} mr={2} fontSize="small">{description}</Text>)}
-        </FlexRow>
+        </StyledCloseButton>
+        <StyledToastIcon>{icon[toastType]}</StyledToastIcon>
+        <FlexColumn mx={6} my={2}>
+          <Text m={0} pl={2} fontSize="small" fontWeight="bold">{content}</Text>
+          {description && (<Text mt={1} mx={1} fontSize="small">{description}</Text>)}
+        </FlexColumn>
       </StyledToastContent>
     </StyledToast>
   );

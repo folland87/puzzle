@@ -1,32 +1,37 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { space, typography } from 'styled-system';
-import { get, filterProps } from '../utils';
+import { space, typography, color } from 'styled-system';
+import { filterProps } from '../utils';
 
-const Text = styled((props) => (<span type="button" {...filterProps(props)} />))`
-  letter-spacing: -0.015em;
+const Text = styled((props) => (<p {...filterProps(props)} />))`
+  letter-spacing: normal;
   overflow: hidden;
   text-overflow: ellipsis;
-  vertical-align: baseline;
+  margin: 0;
   ${space};
   ${typography};
-  color: ${({ color }) => get(`colors.${color}`)};
+  ${color};
 `;
 
 Text.propTypes = {
   /**
   * html element rendered by Text component
   */
-  as: PropTypes.oneOf(['span', 'p', 'div', 'a', 'label']),
+  as: PropTypes.oneOf(['span', 'p', 'label']),
+  ...space.propTypes,
+  ...color.propTypes,
+  ...typography.propTypes,
 };
 
 Text.defaultProps = {
-  color: 'dark.3',
-  fontSize: 'inherit',
-  fontWeight: 'inherit',
+  as: 'p',
+  color: 'dark.1',
+  size: 'regular',
+  fontWeight: 'regular',
   fontFamily: 'primary',
-  lineHeight: '1.75',
+  fontStyle: 'normal',
+  lineHeight: 'copy',
 };
 
 export default Text;

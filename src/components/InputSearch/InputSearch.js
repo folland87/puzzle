@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { FaSearch, FaTimes } from 'react-icons/fa';
 import { margin } from 'styled-system';
 import Input from '../InputText';
-import Button from '../Button';
+import { Button } from '../Button';
 import Spinner from '../Spinner';
 import { get, filterProps } from '../utils';
 
@@ -129,7 +129,7 @@ const InputSearch = ({
       setActiveSuggestionIndex(
         (activeSuggestionIndex !== null && activeSuggestionIndex !== 0)
           ? activeSuggestionIndex - 1
-          : null
+          : null,
       );
     }
     // User pressed the down arrow

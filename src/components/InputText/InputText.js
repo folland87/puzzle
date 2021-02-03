@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  FaTimes,
-  FaInfoCircle,
-  FaCheck,
-  FaExclamationTriangle,
-} from 'react-icons/fa';
+  RiCloseCircleLine,
+  RiInformationLine,
+  RiCheckLine,
+  RiAlertLine,
+} from 'react-icons/ri';
 import {
   StyledInputWrapper,
   StyledInputContainer,
@@ -24,10 +24,10 @@ const uniqueId = () => {
 
 const getMessageIcon = (messageType) => {
   switch (messageType) {
-    case 'danger': return <FaTimes />;
-    case 'info': return <FaInfoCircle />;
-    case 'success': return <FaCheck />;
-    case 'warning': return <FaExclamationTriangle />;
+    case 'danger': return <RiCloseCircleLine />;
+    case 'info': return <RiInformationLine />;
+    case 'success': return <RiCheckLine />;
+    case 'warning': return <RiAlertLine />;
     default: return null;
   }
 };
@@ -40,6 +40,8 @@ const InputText = React.forwardRef((props, ref) => {
     message,
     messageType,
     radius,
+    placeholder,
+    scale,
     ...rest
   } = props;
   const id = (rest.id) ? rest.id : uniqueId();
@@ -47,15 +49,24 @@ const InputText = React.forwardRef((props, ref) => {
   return (
     <StyledInputWrapper {...rest}>
       { (label) && <StyledLabel as="label" isRequired={props.required} pl={1} id={id}>{label}</StyledLabel> }
-      <StyledInputContainer error={messageType === 'danger'} radius={radius}>
+      <StyledInputContainer messageType={messageType} radius={radius}>
         { iconLeft && (
-          <StyledIconLeftContainer aria-hidden="true" position="left">
+          <StyledIconLeftContainer scale={scale} aria-hidden="true" position="left">
             {iconLeft}
           </StyledIconLeftContainer>
         )}
-        <StyledInput aria-labelledby={id} ref={ref} aria-describedby={descriptionId} {...rest} />
+        <StyledInput
+          iconLeft={iconLeft}
+          iconRight={iconRight}
+          placeholder={placeholder}
+          aria-labelledby={id}
+          ref={ref}
+          aria-describedby={descriptionId}
+          scale={scale}
+          {...rest}
+        />
         { iconRight && (
-          <StyledIconRightContainer aria-hidden="true" position="right">
+          <StyledIconRightContainer scale={scale} aria-hidden="true" position="right">
             {iconRight}
           </StyledIconRightContainer>
         )}
@@ -96,7 +107,11 @@ InputText.propTypes = {
   */
   label: PropTypes.string,
   /**
-  * Use message to print a messsage describing field's value state.
+  * Placeholder
+  */
+  placeholder: PropTypes.string,
+  /**
+  * Type of message
   */
   message: PropTypes.string,
   /**
@@ -133,6 +148,7 @@ InputText.defaultProps = {
   disabled: null,
   label: null,
   message: null,
+  placeholder: null,
   messageType: 'text',
   iconLeft: null,
   iconRight: null,

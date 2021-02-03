@@ -4,7 +4,7 @@ Input text:
 import { useState } from 'react';
 import { FaEnvelopeOpen, FaLock } from 'react-icons/fa';
 import { FlexColumn } from '../Flexbox';
-import Button from '../Button';
+import { Button } from '../Button';
 
 const [username, setUsername] = useState('');
 const [password, setPassword] = useState('');
@@ -17,7 +17,6 @@ const [password, setPassword] = useState('');
     type="text"
     required
     onChange={(e) => setUsername(e.target.value)}
-    iconLeft={<FaEnvelopeOpen />}
   />
   <InputText
     my={2}
@@ -26,7 +25,8 @@ const [password, setPassword] = useState('');
     type="password"
     required
     onChange={(e) => setPassword(e.target.value)}
-    iconLeft={<FaLock />}
+    iconRight={<FaLock />}
+    iconRightOnClick={() => {}}
     message="*: champs requis"
   />
 </FlexColumn>
@@ -35,10 +35,11 @@ const [password, setPassword] = useState('');
 Errored input:
 ```jsx
 import { useState } from 'react';
+import { FlexColumn } from '../Flexbox';
 import { FaEnvelopeOpen } from 'react-icons/fa';
 
 const [email, setEmail] = useState('hello world');
-<>
+<FlexColumn maxWidth="400px">
   <InputText
     my={2}
     label={"Email"}
@@ -50,5 +51,5 @@ const [email, setEmail] = useState('hello world');
     message="Entrez une adresse mail valide."
     messageType="danger"
   />
-</>
+</FlexColumn>
 ```

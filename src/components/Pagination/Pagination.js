@@ -9,7 +9,7 @@ import {
   FaAngleDoubleLeft,
 } from 'react-icons/fa';
 
-import Button from '../Button';
+import { Button } from '../Button';
 import Text from '../Text';
 import { get, filterProps } from '../utils';
 
@@ -36,7 +36,7 @@ const PaginationInput = styled(({ pageCount, ...props }) => <input type="number"
   padding: 0 ${get('space.1')};
   border-radius: ${get('radius.regular')};
   font-size: ${({ scale }) => get(`fontSizes.${scale}`)};
-  height: ${({ scale }) => get(`heights.${scale}`)};
+  line-height: ${get('lineHeights.inputs')};
   min-width: 40px;
   cursor: text;
   color: ${get('colors.dark.1')};
@@ -148,7 +148,7 @@ Pagination.propTypes = {
 };
 
 Pagination.defaultProps = {
-  scale: 'medium',
+  scale: 'regular',
   buttonColor: 'primary',
   buttonRadius: 'rounded',
   buttonOutline: true,

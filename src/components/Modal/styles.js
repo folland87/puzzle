@@ -13,6 +13,7 @@ export const StyledOverlay = styled.div`
 `;
 
 export const StyledModal = styled.dialog`
+  padding: ${get('space.4')};
   display: flex;
   flex-direction: column;
   border: 0;

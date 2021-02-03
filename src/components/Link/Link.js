@@ -1,53 +1,11 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { Link as RouterLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { space, typography, color } from 'styled-system';
 import { get, filterProps } from '../utils';
 
-const linkStyles = css`
-  color: ${get('colors.link')};
-  font-family: ${get('fonts.primary')};
-  text-decoration: ${({ underline }) => (['always', 'not:hover'].includes(underline) ? 'underline' : 'none')};
-  letter-spacing: -0.015em;
-  ${space};
-  ${typography};
-  ${color};
-
-  &:focus {
-    outline: 2px solid ${get('colors.link')};
-  }
-  &:hover {
-    text-decoration: ${({ underline }) => (['always', 'only:hover'].includes(underline) ? 'underline' : 'none')};
-  }
-`;
-
-const StyledRouterLink = styled(({
-  to,
-  children,
-  target,
-  ...rest
-}) => (
-  <RouterLink to={to} {...filterProps(rest)}>
-    {children}
-  </RouterLink>
-))`
-  ${linkStyles}
-`;
-const StyledExternalLink = styled(({
-  to,
-  children,
-  target,
-  ...rest
-}) => (
-  <a href={to} rel="noreferrer noopener" target={target || '_blank'} {...filterProps(rest)}>
-    {children}
-  </a>
-))`
-  ${linkStyles}
-`;
-
-const Link = ({
+const Link = styled(({
   to,
   target,
   children,
@@ -56,30 +14,54 @@ const Link = ({
   const parser = document.createElement('a');
   parser.href = to;
   const isInternal = window.location.host === parser.host;
-  const RenderLink = (isInternal) ? StyledRouterLink : StyledExternalLink;
+  if (isInternal) {
+    return (
+      <RouterLink to={to} {...filterProps(rest)}>
+        {children}
+      </RouterLink>
+    );
+  }
   return (
-    <RenderLink to={to} rel="noreferrer noopener" target={target || '_blank'} {...rest}>
-      {children}
-    </RenderLink>
+    <span>
+      <a href={to} rel="noreferrer noopener" target={target} {...filterProps(rest)}>
+        {children}
+      </a>
+    </span>
   );
-};
+})`
+  border-bottom: 1px solid currentColor;
+  text-decoration: none;
+  letter-spacing: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+  ${space};
+  ${typography};
+  ${color};
+  &:focus {
+    outline: 2px solid ${get('colors.focus')};
+    outline-offset: 2px;
+  }
+`;
 
 Link.propTypes = {
-  /**
-  * Link to ...
-  */
-  to: PropTypes.string,
-  /**
-  * Select the font type from the theme
-  */
-  underline: PropTypes.oneOf(['never', 'always', 'only:hover', 'not:hover']),
+  target: PropTypes.string,
+  children: PropTypes.string.isRequired,
+  to: PropTypes.string.isRequired,
   ...space.propTypes,
   ...color.propTypes,
   ...typography.propTypes,
 };
 
 Link.defaultProps = {
-  underline: 'only:hover',
+  target: '_blank',
+  color: 'dark.1',
+  size: 'regular',
+  fontWeight: 'regular',
+  fontSize: 'regular',
+  fontFamily: 'primary',
+  fontStyle: 'normal',
+  lineHeight: 'copy',
 };
 
 export default Link;

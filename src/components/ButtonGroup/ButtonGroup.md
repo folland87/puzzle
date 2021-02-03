@@ -1,5 +1,5 @@
-```jsx
-import Button from '../Button';
+```jsx padded
+import { Button } from '../Button';
 import { FaChevronRight } from 'react-icons/fa';
 
 <ButtonGroup>
@@ -14,24 +14,26 @@ import { FaChevronRight } from 'react-icons/fa';
   </Button>
 </ButtonGroup>
 ```
-```jsx
-import Button from '../Button';
-import { FaChevronRight } from 'react-icons/fa';
+
+```jsx padded
+import { Button } from '../Button';
+import { FaStar } from 'react-icons/fa';
 
 <ButtonGroup>
-  <Button variant="flat" color="success" iconRight={<FaChevronRight />}>
+  <Button variant="flat" color="success" icon={<FaStar />}>
     Click Me
   </Button>
-  <Button variant="flat" color="success" iconRight={<FaChevronRight />} iconLeft={<FaChevronRight />}>
+  <Button isActive variant="flat" color="success" icon={<FaStar />}>
     Click Me
   </Button>
-  <Button variant="flat" color="success" iconLeft={<FaChevronRight />}>
+  <Button variant="flat" color="success" icon={<FaStar />}>
     Click Me
   </Button>
 </ButtonGroup>
 ```
-```jsx
-import Button from '../Button';
+
+```jsx padded
+import { Button } from '../Button';
 import { FaChevronRight } from 'react-icons/fa';
 
 <ButtonGroup>
