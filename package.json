@@ -22,7 +22,7 @@
     "build-watch": "rollup -c -w",
     "styleguide": "styleguidist server",
     "predeploy": "styleguidist build",
-    "deploy": "gh-pages -d build -r https://$GH_TOKEN@github.com/folland87/puzzle.git"
+    "deploy": "gh-pages -d build -r https://$GH_PAT@github.com/folland87/puzzle.git"
   },
   "browserslist": {
     "production": [

@@ -19,4 +19,5 @@ jobs:
       - run: git remote set-url origin https://github.com/folland87/puzzle.git
       - run: npm run deploy
         env:
-          GH_TOKEN: ${{secrets.GH_PAT}}
+          GH_PAT: ${{secrets.GH_PAT}}
+          GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
