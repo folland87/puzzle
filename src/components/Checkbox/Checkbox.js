@@ -1,22 +1,33 @@
-import React from 'react'
-import { FaCheck } from 'react-icons/fa'
+import React from 'react';
+import { RiCheckLine } from 'react-icons/ri';
 import {
   StyledCheckbox,
-  StyledCheckboxContainer,
   StyledHiddenCheckbox,
-  StyledLabel,
-} from './styles'
+} from './styles';
+import Text from '../Text';
+import { FlexColumn, FlexRow } from '../Flexbox';
 
-const Checkbox = ({ label, disabled, value, checked, onChange }) => (
-  <StyledCheckboxContainer>
-    <StyledHiddenCheckbox disabled={disabled} checked={checked} onChange={() => onChange(value, !checked)}/>
+const Checkbox = ({
+  label, disabled, name, checked, onChange, description,
+}) => (
+  <FlexRow>
+    <StyledHiddenCheckbox
+      disabled={disabled}
+      checked={checked}
+      name={name}
+      onChange={() => onChange(name, !checked)}
+    />
     <StyledCheckbox checked={checked}>
-      {checked && <FaCheck />}
+      {checked && <RiCheckLine />}
     </StyledCheckbox>
-    <StyledLabel disabled={disabled}>
-      Check me
-    </StyledLabel>
-  </StyledCheckboxContainer>
-)
-
+    <FlexColumn pl={3}>
+      <Text color={((disabled) ? 'dark.3' : 'dark.0')}>
+        Check me
+      </Text>
+      {
+        description && <Text fontSize="small" color="dark.3">{description}</Text>
+      }
+    </FlexColumn>
+  </FlexRow>
+);
 export default Checkbox;

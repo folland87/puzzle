@@ -65,6 +65,7 @@ export const SecondaryButton = styled(
   };
   &:disabled {
     box-shadow: 0 0 0 1px ${get('colors.dark.3')};
+    box-shadow: ${({ icon }) => icon && 'unset'};
     color: ${get('colors.dark.3')};
     cursor: not-allowed;
   };

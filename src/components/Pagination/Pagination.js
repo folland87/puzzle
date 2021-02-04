@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { margin } from 'styled-system';
-import {
-  FaAngleLeft,
-  FaAngleRight,
-  FaAngleDoubleRight,
-  FaAngleDoubleLeft,
-} from 'react-icons/fa';
+import { RiArrowRightSLine, RiArrowLeftSLine } from 'react-icons/ri';
+// import {
+//   FaAngleLeft,
+//   FaAngleRight,
+//   FaAngleDoubleRight,
+//   FaAngleDoubleLeft,
+// } from 'react-icons/fa';
 
 import { Button } from '../Button';
 import Text from '../Text';
@@ -32,12 +33,11 @@ const PaginationInput = styled(({ pageCount, ...props }) => <input type="number"
   color: ${get('colors.dark.1')};
   background: ${get('colors.light.2')};
   text-align: center;
-  max-width: 60px;
+  max-width: 40px;
   padding: 0 ${get('space.1')};
   border-radius: ${get('radius.regular')};
   font-size: ${({ scale }) => get(`fontSizes.${scale}`)};
   line-height: ${get('lineHeights.inputs')};
-  min-width: 40px;
   cursor: text;
   color: ${get('colors.dark.1')};
   border: 0;
@@ -61,9 +61,6 @@ export const Pagination = ({
   currentPage,
   pageCount,
   onPageChange,
-  buttonOutline,
-  buttonColor,
-  buttonRadius,
 }) => {
   const [inputPage, setInputPage] = useState(currentPage);
   const handleChange = (nextPageIndex) => {
@@ -78,24 +75,20 @@ export const Pagination = ({
       <Button
         m={1}
         scale={scale}
-        color={buttonColor}
-        outline={buttonOutline}
-        variant="filled"
-        radius={buttonRadius}
+        secondary
         disabled={currentPage === 1}
         onClick={() => handleChange(1)}
-        icon={<FaAngleDoubleLeft aria-label="première page" />}
+        aria-label="page 1"
+        icon={<RiArrowLeftSLine />}
       />
       <Button
         m={1}
         scale={scale}
-        color={buttonColor}
-        outline={buttonOutline}
-        variant="filled"
-        radius={buttonRadius}
+        secondary
         disabled={currentPage === 1}
         onClick={() => handleChange(currentPage - 1)}
-        icon={<FaAngleLeft aria-label="page précédante" />}
+        aria-label={`page ${(currentPage - 1)}`}
+        icon={<RiArrowLeftSLine />}
       />
       <PaginationForm mx={3} onSubmit={() => handleChange(inputPage)}>
         <PaginationInput
@@ -114,24 +107,20 @@ export const Pagination = ({
       <Button
         m={1}
         scale={scale}
-        color={buttonColor}
-        outline={buttonOutline}
-        radius={buttonRadius}
-        variant="filled"
+        secondary
         disabled={currentPage === pageCount}
         onClick={() => handleChange(currentPage + 1)}
-        icon={<FaAngleRight aria-label="page suivante" />}
+        aria-label={`page ${(currentPage + 1)}`}
+        icon={<RiArrowRightSLine />}
       />
       <Button
         m={1}
         scale={scale}
-        color={buttonColor}
-        outline={buttonOutline}
-        radius={buttonRadius}
-        variant="filled"
+        secondary
         disabled={currentPage === pageCount}
         onClick={() => handleChange(pageCount)}
-        icon={<FaAngleDoubleRight aria-label="dernière page" />}
+        aria-label={`page ${pageCount}`}
+        icon={<RiArrowRightSLine />}
       />
     </PaginationContainer>
   );

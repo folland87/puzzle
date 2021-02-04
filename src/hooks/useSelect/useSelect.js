@@ -22,47 +22,6 @@ const useSelect = (bref, ref) => {
     }
   }, [isOpen, activeElementIndex, focusableElements, ref, bref]);
 
-  const onKeyDown = (e) => {
-    // User pressed the down arrow
-    console.log('test');
-    if (e.keyCode === 40) {
-      if (activeElementIndex === null) return setActiveElementIndex(0);
-      setActiveElementIndex((activeElementIndex) => (
-        ((activeElementIndex + 1) === focusableElements.length)
-          ? activeElementIndex
-          : (activeElementIndex + 1)
-      ));
-      e.preventDefault();
-    }
-    // User pressed the up arrow
-    else if (e.keyCode === 38) {
-      if (activeElementIndex === null) return setActiveElementIndex(0);
-      setActiveElementIndex((activeElementIndex) => (
-        (activeElementIndex !== 0) ? (activeElementIndex -1) : activeElementIndex
-      ))
-      e.preventDefault();
-    }
-    else if (e.keyCode === 13 || e.keyCode === 9 || e.keyCode === 32) {
-      if (activeElementIndex === null) {
-        return toggle(e);
-      };
-      if (focusableElements[activeElementIndex].getAttribute("href")) return;
-      setSelectedElement(focusableElements[activeElementIndex].getAttribute("value"));
-      toggle(e);
-    }
-    else if (e.keyCode === 27) {
-      e.preventDefault();
-      toggle(e);
-    }
-  };
-  const onClick = (e) => {
-    if (e.target.getAttribute("href")) {
-      toggle(e);
-      return;
-    };
-    setSelectedElement(e.target.getAttribute('value'));
-    toggle(e);
-  }
   const toggle = (e) => {
     if (isOpen) {
       if (e.key && (e.keyCode === 13 || e.keyCode === 9 || e.keyCode === 32 || e.keyCode === 27)) {
@@ -71,8 +30,8 @@ const useSelect = (bref, ref) => {
         if (bref.current) return bref.current.focus();
       }
       if (e.key && (e.keyCode === 38 || e.keyCode === 40)) {
-        setActiveElementIndex(0);
         e.preventDefault();
+        return setActiveElementIndex(0);
       }
       if (!e.key) {
         setIsOpen(false);
@@ -81,18 +40,58 @@ const useSelect = (bref, ref) => {
     } else {
       if (e.key && (e.keyCode === 13 || e.keyCode === 32)) {
         e.preventDefault();
-        setIsOpen(true);
+        return setIsOpen(true);
       }
       if (!e.key) {
         e.preventDefault();
-        setIsOpen(true);
+        return setIsOpen(true);
       }
     }
-  }
+  };
 
+  const onKeyDown = (e) => {
+    // User pressed the down arrow
+    if (e.keyCode === 40) {
+      if (activeElementIndex === null) return setActiveElementIndex(0);
+      setActiveElementIndex((activeElementIndex) => (
+        ((activeElementIndex + 1) === focusableElements.length)
+          ? 0
+          : (activeElementIndex + 1)
+      ));
+      e.preventDefault();
+    }
+    // User pressed the up arrow
+    else if (e.keyCode === 38) {
+      if (activeElementIndex === null) return setActiveElementIndex(0);
+      setActiveElementIndex((activeElementIndex) => (
+        (activeElementIndex !== 0) ? (activeElementIndex - 1) : (focusableElements.length - 1)
+      ));
+      e.preventDefault();
+    } else if (e.keyCode === 13 || e.keyCode === 9 || e.keyCode === 32) {
+      if (activeElementIndex === null) {
+        return toggle(e);
+      }
+      if (focusableElements[activeElementIndex].getAttribute('href')) return;
+      setSelectedElement(focusableElements[activeElementIndex].getAttribute('value'));
+      toggle(e);
+    } else if (e.keyCode === 27) {
+      e.preventDefault();
+      toggle(e);
+    }
+  };
+  const onClick = (e) => {
+    if (e.target.getAttribute('href')) {
+      toggle(e);
+      return;
+    }
+    setSelectedElement(e.target.getAttribute('value'));
+    toggle(e);
+  };
 
-  return { toggle, isOpen, onKeyDown, onClick, selectedElement, activeElementIndex };
-}
+  return {
+    toggle, isOpen, onKeyDown, onClick, selectedElement, activeElementIndex,
+  };
+};
 
 /* @component */
 export default useSelect;

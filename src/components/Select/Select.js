@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
-import { FaCaretDown, FaCaretUp } from 'react-icons/fa';
+import { RiArrowUpSFill, RiArrowDownSFill } from 'react-icons/ri';
 import useSelect from '../../hooks/useSelect';
 import {
   StyledSelect,
@@ -35,8 +35,8 @@ const Select = ({ onSelect, options, ...rest }) => {
         onKeyDown={(e) => toggle(e)}
         {...rest}
       >
-        {(selectedOption && selectedOption.label) || selectedElement || 'Select me im famous...'}
-        {isOpen ? <FaCaretUp /> : <FaCaretDown />}
+        {(selectedOption && selectedOption.label) || selectedElement || ' -Select-'}
+        {isOpen ? <RiArrowUpSFill /> : <RiArrowDownSFill />}
       </StyledSelect>
       {
         (isOpen)
